@@ -5,13 +5,15 @@ By using MapProxy, the tiled map images can delivered as wms service. So QGIS wi
 MapProxy is installed by virtualenv, so your python enviroment is not polluted.  
 
 
-Usage
+Usage (Now testing, so manualy install)
 ------
-1. Run QGIS (>=2.0)
-2. Activate MapProxy Plugin from QGIS Plugin Menu
-3. Install MapProxy from QGIS Plugin Menu --> MapProxy plugin. This install needs only one time.
-4. Run MapProxy server from QGIS Plugin Menu --> MapProxy plugin. If success, Layers are added.
-5. Select layer you want from QGIS Plugin Menu --> MapProxy plugin
+0. Download source from https://github.com/tmizu23/mapproxy_plugin/archive/master.zip
+1. Unzip and put it to QGIS plugin directory (.qgis2/python/plugins/) 
+2. Run QGIS (>=2.0)
+3. Activate MapProxy Plugin from QGIS Plugin Menu
+4. Install MapProxy from QGIS Plugin Menu --> MapProxy plugin. This install needs only one time.
+5. Run MapProxy server from QGIS Plugin Menu --> MapProxy plugin. If success, Layers are added.
+6. Select layer you want from QGIS Plugin Menu --> MapProxy plugin
 
 
 Configuring
