@@ -7,10 +7,10 @@
     <qgis_minimum_version>2.0</qgis_minimum_version>
     <qgis_maximum_version>2.99</qgis_maximum_version>
     <homepage>https://github.com/tmizu23/mapproxy_plugin</homepage>
-    <file_name>mapproxy_plugin-master.zip</file_name>
+    <file_name>mapproxy_plugin.zip</file_name>
     <icon>mapproxy.png</icon>
     <author_name>Takayuki Mizutani(ecoris inc.)</author_name>
-    <download_url>https://github.com/tmizu23/mapproxy_plugin/archive/master.zip</download_url>
+    <download_url>https://raw.github.com/tmizu23/mapproxy_plugin/master/mapproxy_plugin.zip</download_url>
     <uploaded_by>Takayuki Mizutani</uploaded_by>
     <create_date>2013-10-17T00:00:00</create_date>
     <update_date>2013-10-17T00:00:00</update_date>
