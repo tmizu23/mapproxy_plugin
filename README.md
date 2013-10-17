@@ -7,13 +7,13 @@ MapProxy is installed by virtualenv, so your python enviroment is not polluted.
 
 Usage (Now testing, so please install manually)
 ------
-0. Download source from https://github.com/tmizu23/mapproxy_plugin/archive/master.zip
-1. Unzip and rename the folder to "mapproxy_plugin". Then put it to QGIS plugin directory ($HOME/.qgis2/python/plugins/) 
-2. Run QGIS (>=2.0)
-3. Activate MapProxy Plugin from QGIS Plugin Menu
-4. Install MapProxy from QGIS Plugin Menu --> MapProxy plugin. This install needs only one time.
-5. Run MapProxy server from QGIS Plugin Menu --> MapProxy plugin. If success, Layers are added.
-6. Select layer you want from QGIS Plugin Menu --> MapProxy plugin
+1. Download source from https://github.com/tmizu23/mapproxy_plugin/archive/master.zip
+2. Unzip and rename the folder to "mapproxy_plugin". Then put it to QGIS plugin directory ($HOME/.qgis2/python/plugins/) 
+3. Run QGIS (>=2.0)
+4. Activate MapProxy Plugin from QGIS Plugin Menu
+5. Install MapProxy from QGIS Plugin Menu --> MapProxy plugin. This install needs only one time.
+6. Run MapProxy server from QGIS Plugin Menu --> MapProxy plugin. If success, Layers are added.
+7. Select layer you want from QGIS Plugin Menu --> MapProxy plugin
 
 
 Configuring
