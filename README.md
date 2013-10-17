@@ -18,12 +18,12 @@ Configuring
 ------
 You can set the layers by configuring the mapproxy yaml file.  
 
-1. make yaml file. Refer to http://mapproxy.org/docs/nightly/index.html
-2. put it into project directory (.qgis2/python/plugins/mapproxy_plugin/project/) 
+1. Make yaml file. Refer to http://mapproxy.org/docs/nightly/index.html
+2. Put it into project directory (.qgis2/python/plugins/mapproxy_plugin/project/) 
 
 yaml file restriction  
-- set "wms" services
-- set "srs" into services --> wms
+- Set "wms" services
+- Set "srs" into services --> wms
 
 
 LICENSE
