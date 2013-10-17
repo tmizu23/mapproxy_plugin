@@ -12,9 +12,9 @@ changelog=
 
 ; tags are in comma separated value format, spaces are allowed
 tags=mapproxy,wms,wmts,tiles
-homepage=http://map.ecoris.info
-tracker=
-repository=
+homepage=https://github.com/tmizu23/mapproxy_plugin
+tracker=https://github.com/tmizu23/mapproxy_plugin
+repository=https://github.com/tmizu23/mapproxy_plugin
 icon=mapproxy.png
 
 experimental=False
