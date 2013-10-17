@@ -1,0 +1,64 @@
+services:
+  demo:
+  wmts:
+  wms:
+   srs: ['EPSG:3857','EPSG:4326']
+   image_formats: ['image/png','image/jpeg']
+   attribution:
+      text: "Tiles Courtesy of MapQuest, (c)OpenStreetMap contributors, Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency"
+   md:
+      title: MapQuest OSM and Open Aerial tile 
+      abstract: This is MapQuest OSM and Open Aerial tile.
+      online_resource: http://www.mapquest.com
+      access_constraints:
+            Read the Terms of Use.(http://developer.mapquest.com/web/products/open/map)
+layers:
+  - name: osm
+    title: mapquest osm tile
+    sources: [osm]
+  - name: aerial
+    title: mapquest open aerial tile
+    sources: [aerial]
+caches:
+  osm:
+    grids: [web]
+    sources: [osm]
+  aerial:
+    grids: [web]
+    sources: [aerial]
+sources:
+  osm:
+    type: tile
+    grid: web
+    url: http://otile1.mqcdn.com/tiles/1.0.0/map/%(tms_path)s.png
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  aerial:
+    type: tile
+    grid: web
+    url: http://otile1.mqcdn.com/tiles/1.0.0/sat/%(tms_path)s.png
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+grids:
+  web:
+    base: GLOBAL_WEBMERCATOR
+
+globals:
