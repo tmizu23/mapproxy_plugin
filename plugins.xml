@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<?xml-stylesheet type='text/xsl' href='plugins.xsl' ?>
+<plugins>
+  <pyqgis_plugin name='MapProxy Plugin' version='1.0.0'>
+    <description><![CDATA[This plugin allows you to access to the tiled map images from QGIS by installing MapProxy to local PC.]]></description>
+    <version>1.0.0</version>
+    <qgis_minimum_version>2.0</qgis_minimum_version>
+    <qgis_maximum_version>2.99</qgis_maximum_version>
+    <homepage>https://github.com/tmizu23/mapproxy_plugin</homepage>
+    <file_name>mapproxy_plugin-master.zip</file_name>
+    <icon>mapproxy.png</icon>
+    <author_name>Takayuki Mizutani(ecoris inc.)</author_name>
+    <download_url>https://github.com/tmizu23/mapproxy_plugin/archive/master.zip</download_url>
+    <uploaded_by>Takayuki Mizutani</uploaded_by>
+    <create_date>2013-10-17T00:00:00</create_date>
+    <update_date>2013-10-17T00:00:00</update_date>
+    <experimental>False</experimental>
+    <deprecated>False</deprecated>
+    <tracker></tracker>
+    <repository></repository>
+    <tags></tags>
+  </pyqgis_plugin>
+</plugins>
