@@ -190,10 +190,21 @@ class MapProxyPlugin:
     def readme(self):
         pathPlugin = "%s%s%%s" % ( os.path.dirname(__file__), os.path.sep )
         projectdir = pathPlugin % "project"
-        QMessageBox.information(None, "ReadMe", QCoreApplication.translate("message", "<h1>MapProxy Plugin</h1>"
-                                                                                      "<ol>"
-                                                                                      "<li>Install mapproxy</li>"
-                                                                                      "<li>Run mapproxy. If success, layers are added</li>"
-                                                                                      "<li>Select layer you need</li>"
-                                                                                      "</ol>"
-                                                                                      "<p>you can add layers collection by adding the yaml mapproxy config file in the project dirctory.<br>" + projectdir + "</p>"))
+        QMessageBox.information(None, "ReadMe", u"<h1>MapProxy Plugin</h1>"
+                                                                                      u"<h2>使い方</h2>"
+                                                                                      u"<ol>"
+                                                                                      u"<li>「Install MapProxy」を選択してMapProxyをインストールします。この作業は最初の1回だけです。</li>"
+                                                                                      u"<li>「Run MapProxy」を選択してMapProxyを起動します。問題がなければ、設定ファイルが読み込まれます。</li>"
+                                                                                      u"<li>追加したいレイヤーを選択します。</li>"
+                                                                                      u"</ol>"
+                                                                                      u"<p>※このプラグインの起動中は印刷機能が制限されます。（プリンタへの出力不可、PDFおよび画像への出力はA4のみ）</p>"
+                                                                                      u"<h2>利用規約</h2>"
+                                                                                      u"<ul>"
+                                                                                      u"<li>国土地理院背景地図画像を使用する際は、その利用規約に従う必要があります。(http://portal.cyberjapan.jp/portalsite/kiyaku/)</li>"
+                                                                                      u"<li>公の秩序若しくは善良な風俗を害する目的又は犯罪行為その他違法な行為に用いる目的での利用はできません。</li>"
+                                                                                      u"<li>A4サイズを超える印刷はできません。</li>"
+                                                                                      u"<li>測量法の複製の規定（29条）・使用の規定（第30条）により承認申請が必要とされている利用方法では利用できません。</li>"
+                                                                                      u"<li>私的利用の範囲を超えて、背景地図等データを保存することはできません（背景地図等データの閲覧・利用に伴う一時的な保存の場合を除く）。</li>"
+                                                                                      u"<li>本規約に反して利用した場合や、背景地図等データ提供サーバに過度の負担が生じた場合は、予告なくアクセスを遮断する場合があります。</li>"
+                                                                                      u"<li>エコリス地図タイルを使用する際は、その利用規約に従う必要があります。(http://map.ecoris.info)</li>"
+                                                                                      u"</ul>")
