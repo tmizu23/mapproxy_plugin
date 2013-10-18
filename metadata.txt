@@ -1,5 +1,5 @@
 [general]
-name=MapProxy Plugin
+name=MapProxy Plugin -- custom_jp version
 qgisMinimumVersion=2.0
 description=This plugin allows you to access to the tiled map images from QGIS by installing MapProxy to local PC. For added layer, you can change the projection and access the property by QGIS. The map setting is easy by configuring mapproxy's yaml file. 
 version=1.0.0
@@ -8,13 +8,13 @@ email=map@ecoris.co.jp
 
 changelog=
   1.0.0
-    - release
+    - release. this is customized version for Japanese
 
 ; tags are in comma separated value format, spaces are allowed
 tags=mapproxy,wms,wmts,tiles
-homepage=https://github.com/tmizu23/mapproxy_plugin
-tracker=https://github.com/tmizu23/mapproxy_plugin
-repository=https://github.com/tmizu23/mapproxy_plugin
+homepage=https://github.com/tmizu23/mapproxy_plugin/tree/custom_jp
+tracker=https://github.com/tmizu23/mapproxy_plugin/tree/custom_jp
+repository=https://github.com/tmizu23/mapproxy_plugin/tree/custom_jp
 icon=mapproxy.png
 
 experimental=False
