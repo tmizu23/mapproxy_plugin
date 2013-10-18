@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 import sys, os, glob, shutil
+#for debug
+#sys.path.append("/Users/mizutanitakayuki/.qgis2/python/plugins/mapproxy_plugin/pycharm-debug.egg")
+#import pydevd
+
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from PyQt4.QtWebKit import *
@@ -52,6 +56,9 @@ class MapProxyPlugin:
 
 
     def initGui(self):
+    #for debug
+    #    pydevd.settrace('localhost', port=53100, stdoutToServer=True, stderrToServer=True)
+    #
         pathPlugin = "%s%s%%s" % ( os.path.dirname(__file__), os.path.sep )
         self.readmeAddAction = QAction(QIcon(pathPlugin % "readme.png"), "ReadMe", self.iface.mainWindow())
         QObject.connect(self.readmeAddAction, SIGNAL("triggered()"), self.readme)
@@ -77,6 +84,13 @@ class MapProxyPlugin:
 
         mapproxy_execute.kill()
 
+    def newcomposerset(self, cv):
+        cv.composerWindow().children()[2].setEnabled(False)#Print menu
+        cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QComboBox)[0].setEnabled(False)
+        cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QDoubleSpinBox)[0].setEnabled(False)
+        cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QDoubleSpinBox)[1].setEnabled(False)
+        cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QSpinBox)[1].setEnabled(False)
+
     def addLayer(self, layerType):
         #if possible, set mapproxy service epsg to qgis project epsg
         qgisepsg = str(self.iface.mapCanvas().mapRenderer().destinationCrs().authid())
@@ -88,7 +102,6 @@ class MapProxyPlugin:
         self.iface.addRasterLayer(
             "crs=" + epsg + "&layers=" + layerType.name + "&styles=&format=image/png&url=http://localhost:8080/" + layerType.base + "/service?",
             layerType.name, "wms")
-        #if WMTS
         #self.iface.addRasterLayer("url=http://localhost:8080/" + layerType.base + "/service?service=wmts&version=1.0.0&tileMatrixSet=web&crs=EPSG:3857&layers=" + layerType.name + "&styles=&format=image/png",layerType.name,"wms")
 
     def run(self):
@@ -112,6 +125,26 @@ class MapProxyPlugin:
         if rep == QMessageBox.Cancel:
             return
 
+        composerList = self.iface.activeComposers()
+
+        ##### for cjp
+        rep = QMessageBox.question(None, "Info:", QCoreApplication.translate("message",
+                                                                             "This plugin limits the ability to print. You need to accept these Terms of Use(http://portal.cyberjapan.jp/portalsite/kiyaku/ , http://map.ecoris.info)"),
+                                   QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+        if rep == QMessageBox.No:
+            return
+
+        for cv in composerList:
+            cv.composerWindow().children()[2].setEnabled(False)#Print menu
+            cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QComboBox)[0].setEnabled(False)#paper
+            cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QDoubleSpinBox)[0].setEnabled(
+                False)#width
+            cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QDoubleSpinBox)[1].setEnabled(
+                False)#height
+            cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QSpinBox)[1].setEnabled(
+                False)#resolution
+        self.iface.composerAdded.connect(self.newcomposerset)
+
         #Layers
         files = glob.glob(projectdir + os.sep + "*.yaml")
         self.mpLayerTypeRegistry = MPLayerTypeRegistry()
@@ -125,6 +158,7 @@ class MapProxyPlugin:
                 self.mpLayerTypeRegistry.add(
                     MPLayerType(self, filebase, layer['name'], layer['title'], filebase + '.png',
                                 yd['services']['wms']['srs']))
+                #QMessageBox.information(None, "Info:",layer)
         for layerType in self.mpLayerTypeRegistry.types():
             action = QAction(QIcon(pathPlugin % layerType.icon), layerType.title, self.iface.mainWindow())
             self.layerAddActions.append(action)
@@ -159,7 +193,7 @@ class MapProxyPlugin:
         QMessageBox.information(None, "ReadMe", QCoreApplication.translate("message", "<h1>MapProxy Plugin</h1>"
                                                                                       "<ol>"
                                                                                       "<li>Install mapproxy</li>"
-                                                                                      "<li>Run mapproxy. If success, layers are added in the menu</li>"
-                                                                                      "<li>Select layer</li>"
+                                                                                      "<li>Run mapproxy. If success, layers are added</li>"
+                                                                                      "<li>Select layer you need</li>"
                                                                                       "</ol>"
-                                                                                      "<p>you can set layers by configuring yaml mapproxy file in this dirctory.<br>" + projectdir + "</p>"))
+                                                                                      "<p>you can add layers collection by adding the yaml mapproxy config file in the project dirctory.<br>" + projectdir + "</p>"))
