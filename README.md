@@ -1,9 +1,8 @@
 MapProxy Plugin for QGIS
 ======================
-This QGIS plugin allows you to access to the tiled map images by installing MapProxy to local PC.   
-By using MapProxy, the tiled map images can delivered as wms service. So QGIS will also be able to access them easily.   
-MapProxy is installed by virtualenv, so your python enviroment is not polluted.  
-
+このプログラムは、MapProxyをローカルPCにインストールして、QGISから地図タイルにアクセスできるようにするQGISプラグインです。  
+電子国土背景地図、エコリス地図タイルをプリセットしているので（予定）、これらの地図を簡単にQGIS上に表示させることができます。
+なお、MapProxyはVirtualenv上にインストールするので、各自のpython環境は汚しません。
 
 Usage (Now testing, so please install manually)
 ------
