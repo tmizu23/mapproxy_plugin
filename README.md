@@ -8,13 +8,12 @@ MapProxyをローカルPCにインストールして、それをwmsレイヤー�
 
 使い方 (現在テスト中につき、プラグインのインストールは手動でお願いします。)
 ------
-1. 以下からプログラムをダウンロードしてください。https://github.com/tmizu23/mapproxy_plugin/archive/custom_jp.zip
-2. 解凍したのち、フォルダ名を「mapproxy_plugin」に変更してください。それをQGISプラグインのフォルダに入れてください。($HOME/.qgis2/python/plugins/) 
-3. QGIS(バージョン2.0以上)を起動させます。
-4. プラグインメニューから「MapProxy Plugin」を有効にします。
-5. プラグインメニュー --> MapProxy plugin --> Installl Mapproxy を選択してMapproxyをインストールします。この作業は最初の1回だけ必要です。
-6. プラグインメニュー --> MapProxy plugin -->　Run MapProxy を選択してMapproxyを起動します。問題がなければ、設定ファイルが読み込まれます。
-7. プラグインメニュー --> MapProxy plugin　から追加したレイヤーを選択して地図に表示させます。
+1. QGIS(バージョン2.0以上)を起動させます。
+2. プラグインメニュー --> 「プラグインの管理とインストール」--> 「設定」から"http://map.ecoris.info/plugins.xml"を追加します。
+3. プラグインメニューから「MapProxy Plugin(custom_jp)」をインストールし、プラグインを有効にします。
+4. プラグインメニュー --> MapProxy plugin --> Installl Mapproxy を選択してMapproxyをインストールします。この作業は最初の1回だけ必要です。
+5. プラグインメニュー --> MapProxy plugin -->　Run MapProxy を選択してMapproxyを起動します。問題がなければ、設定ファイルが読み込まれます。
+6. プラグインメニュー --> MapProxy plugin　から追加したレイヤーを選択して地図に表示させます。
 
 ※ プリセットしている地図タイルの制限により、このプラグインの起動中はQGISの印刷機能が制限されます。（プリンタへの出力不可、PDFおよび画像への出力はA4のみ）
 
