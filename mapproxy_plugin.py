@@ -85,11 +85,13 @@ class MapProxyPlugin:
         mapproxy_execute.kill()
 
     def newcomposerset(self, cv):
+	cv.composition().setPrintResolution(100)
         cv.composerWindow().children()[2].setEnabled(False)#Print menu
         cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QComboBox)[0].setEnabled(False)
         cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QDoubleSpinBox)[0].setEnabled(False)
         cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QDoubleSpinBox)[1].setEnabled(False)
         cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QSpinBox)[1].setEnabled(False)
+        cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QSpinBox)[1].setValue(100)
 
     def addLayer(self, layerType):
         #if possible, set mapproxy service epsg to qgis project epsg
@@ -135,6 +137,7 @@ class MapProxyPlugin:
             return
 
         for cv in composerList:
+            cv.composition().setPrintResolution(100)
             cv.composerWindow().children()[2].setEnabled(False)#Print menu
             cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QComboBox)[0].setEnabled(False)#paper
             cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QDoubleSpinBox)[0].setEnabled(
@@ -143,6 +146,7 @@ class MapProxyPlugin:
                 False)#height
             cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QSpinBox)[1].setEnabled(
                 False)#resolution
+            cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QSpinBox)[1].setValue(100)
         self.iface.composerAdded.connect(self.newcomposerset)
 
         #Layers
