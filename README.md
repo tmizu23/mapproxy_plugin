@@ -1,4 +1,4 @@
-MapProxy Plugin
+MapProxy Plugin for QGIS
 ======================
 This QGIS plugin allows you to access to the tiled map images by installing MapProxy to local PC.   
 By using MapProxy, the tiled map images can delivered as wms service. So QGIS will also be able to access them easily.   
