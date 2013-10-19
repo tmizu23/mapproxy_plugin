@@ -1,0 +1,72 @@
+services:
+  demo:
+  wmts:
+  wms:
+   srs: ['EPSG:3857','EPSG:4326']
+   image_formats: ['image/png','image/jpeg']
+   attribution:
+      text: "「この背景地図等データは、国土地理院の電子国土Webシステムから提供されたものである。」"
+   md:
+      title: 国土地理院背景地図等データ
+      abstract: この背景地図等データは、国土地理院の電子国土Webシステムから提供されたものである。
+      online_resource: http://portal.cyberjapan.jp/
+      access_constraints:
+            ・私的利用の範囲を超えて、背景地図等データを保存することはできません
+            ・A4サイズを超える印刷はできません。
+            ・その他、以下サイトの利用規約に従う必要があります。
+            http://portal.cyberjapan.jp/portalsite/kiyaku/
+layers:
+  - name: ooshima20131017
+    title: 台風第 26号の大雨（大島町） 正射画像（2013 年 10月 17日撮影） 
+    sources: [ooshima20131017]
+  - name: ooshima201204
+    title: 大島町 正射画像（2012 年 4月撮影） 
+    sources: [ooshima201204]   
+caches:
+  ooshima20131017:
+    grids: [web]
+    sources: [ooshima20131017]
+  ooshima201204:
+    grids: [web]
+    sources: [ooshima201204]
+sources:
+  ooshima20131017:
+    type: tile
+    grid: web
+    url: http://cyberjapandata.gsi.go.jp/xyz/20131017dol/%(z)s/%(x)s/%(y)s.png
+    coverage:
+      bbox: [139.33, 34.6, 139.46, 34.8]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  ooshima201204:
+    type: tile
+    grid: web
+    url: http://geolib.gsi.go.jp/tiles/izuoshima/laserortho/%(z)s/%(x)s/%(x)s-%(y)s-%(z)s.png
+    coverage:
+      bbox: [139.33, 34.6, 139.46, 34.8]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+grids:
+  web:
+    base: GLOBAL_WEBMERCATOR
+globals:
