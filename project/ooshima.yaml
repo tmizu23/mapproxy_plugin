@@ -42,5 +42,5 @@ sources:
 grids:
   web:
     base: GLOBAL_MERCATOR
-
+    srs: EPSG:3857
 globals:
