@@ -87,7 +87,8 @@ class MapProxyPlugin:
     def newcomposerset(self, cv):
 	cv.composition().setPrintResolution(100)
         cv.composerWindow().children()[2].setEnabled(False)#Print menu
-        cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QComboBox)[0].setEnabled(False)
+        cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QComboBox)[0].removeItem(0)
+        cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QComboBox)[0].setMaxCount(3)
         cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QDoubleSpinBox)[0].setEnabled(False)
         cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QDoubleSpinBox)[1].setEnabled(False)
         cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QSpinBox)[1].setEnabled(False)
@@ -139,7 +140,9 @@ class MapProxyPlugin:
         for cv in composerList:
             cv.composition().setPrintResolution(100)
             cv.composerWindow().children()[2].setEnabled(False)#Print menu
-            cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QComboBox)[0].setEnabled(False)#paper
+            cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QComboBox)[0].removeItem(0)
+            cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QComboBox)[0].setMaxCount(3)
+            #    .setEnabled(False)#paper
             cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QDoubleSpinBox)[0].setEnabled(
                 False)#width
             cv.composerWindow().findChildren(QDockWidget)[3].widget().findChildren(QDoubleSpinBox)[1].setEnabled(
