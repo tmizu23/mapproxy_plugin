@@ -129,7 +129,7 @@ class MapProxyPlugin:
 
         composerList = self.iface.activeComposers()
 
-        ##### for cjp
+        ##### for gsi
         rep = QMessageBox.question(None, "Info:", QCoreApplication.translate("message",
                                                                              "This plugin limits the ability to print. You need to accept these Terms of Use(http://portal.cyberjapan.jp/portalsite/kiyaku/ , http://map.ecoris.info)"),
                                    QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -204,11 +204,11 @@ class MapProxyPlugin:
                                                                                       u"<p>※このプラグインの起動中は印刷機能が制限されます。（プリンタへの出力不可、PDFおよび画像への出力はA4のみ）</p>"
                                                                                       u"<h2>利用規約</h2>"
                                                                                       u"<ul>"
-                                                                                      u"<li>国土地理院背景地図画像を使用する際は、その利用規約に従う必要があります。(http://portal.cyberjapan.jp/portalsite/kiyaku/)</li>"
+                                                                                      u"<li>地理院タイルを使用する際は、その利用規約に従う必要があります。(http://portal.cyberjapan.jp/help/termsofuse.html)</li>"
                                                                                       u"<li>公の秩序若しくは善良な風俗を害する目的又は犯罪行為その他違法な行為に用いる目的での利用はできません。</li>"
-                                                                                      u"<li>A4サイズを超える印刷はできません。</li>"
+                                                                                      u"<li>A3サイズを超える印刷はできません。</li>"
                                                                                       u"<li>測量法の複製の規定（29条）・使用の規定（第30条）により承認申請が必要とされている利用方法では利用できません。</li>"
-                                                                                      u"<li>私的利用の範囲を超えて、背景地図等データを保存することはできません（背景地図等データの閲覧・利用に伴う一時的な保存の場合を除く）。</li>"
-                                                                                      u"<li>本規約に反して利用した場合や、背景地図等データ提供サーバに過度の負担が生じた場合は、予告なくアクセスを遮断する場合があります。</li>"
+                                                                                      u"<li>私的利用の範囲を超えて、地理院タイルを保存することはできません（背景地図等データの閲覧・利用に伴う一時的な保存の場合を除く）。</li>"
+                                                                                      u"<li>本規約に反して利用した場合や、地理院タイル提供サーバに過度の負担が生じた場合は、予告なくアクセスを遮断する場合があります。</li>"
                                                                                       u"<li>エコリス地図タイルを使用する際は、その利用規約に従う必要があります。(http://map.ecoris.info)</li>"
                                                                                       u"</ul>")
