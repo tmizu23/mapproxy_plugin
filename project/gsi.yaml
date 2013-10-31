@@ -20,21 +20,6 @@ layers:
   - name: gsi_std2012
     title: 地理院標準地図(在来版)
     sources: [gsi_std2012]
-  - name: gsi_transparent2012
-    title: 地理院彩色地図(在来版)
-    sources: [gsi_transparent2012]
-  - name: gsi_brownshade2012
-    title: 地理院彩色地図(陰影段彩茶)(在来版)
-    sources: [gsi_brownshade2012]
-  - name: gsi_greenshade2012
-    title: 地理院彩色地図(陰影段彩緑)(在来版)
-    sources: [gsi_greenshade2012]
-  - name: gsi_monotone2012
-    title: 地理院モノトーン地図(在来版)
-    sources: [gsi_monotone2012]
-  - name: gsi_monotoneshade2012
-    title: 地理院モノトーン地図(陰影段彩)(在来版)
-    sources: [gsi_monotoneshade2012]
   - name: gsi_std
     title: 地理院標準地図
     sources: [gsi_std]
@@ -47,9 +32,6 @@ layers:
   - name: gsi_english
     title: GSI Map English Version
     sources: [gsi_english]
-  - name: gsi_relief
-    title: 地理院色別標高図
-    sources: [gsi_relief]
   - name: gsi_ort
     title: 電子国土基本図(オルソ画像)
     sources: [gsi_ort]
@@ -82,21 +64,6 @@ caches:
   gsi_std2012:
     grids: [web]
     sources: [gsi_std2012]
-  gsi_transparent2012:
-    grids: [web]
-    sources: [gsi_std-6,gsi_std-5,gsi_transparent2012,gsi_std2012-2,gsi_std2012-1]
-  gsi_brownshade2012:
-    grids: [web]
-    sources: [gsi_std-6,gsi_std-5,gsi_brownshade2012,gsi_std2012-2,gsi_std2012-1]
-  gsi_greenshade2012:
-    grids: [web]
-    sources: [gsi_std-6,gsi_std-5,gsi_greenshade2012,gsi_std2012-2,gsi_std2012-1]
-  gsi_monotone2012:
-    grids: [web]
-    sources: [gsi_std-6,gsi_std-5,gsi_monotone2012,gsi_std2012-2,gsi_std2012-1]
-  gsi_monotoneshade2012:
-    grids: [web]
-    sources: [gsi_std-6,gsi_std-5,gsi_monotoneshade2012,gsi_std2012-2,gsi_std2012-1]
   gsi_std:
     grids: [web]
     sources: [gsi_std]
@@ -109,9 +76,6 @@ caches:
   gsi_english:
     grids: [web]
     sources: [gsi_std-6,gsi_english,gsi_std-4,gsi_std2012-3,gsi_std2012-2,gsi_std2012-1]
-  gsi_relief:
-    grids: [web]
-    sources: [gsi_std-6,gsi_relief]
   gsi_ort:
     grids: [web]
     sources: [gsi_std-6,gsi_std-5,gsi_std-4,gsi_std2012-3,gsi_ort,gsi_std2012-1]
@@ -145,106 +109,6 @@ sources:
     type: tile
     grid: web
     url: http://cyberjapandata.gsi.go.jp/xyz/std2012/%(tms_path)s.png
-    coverage:
-      bbox: [122.9, 20.4, 154.0, 45.6]
-      srs: 'EPSG:4326'
-    transparent: true
-    on_error:
-     204:
-       response: '#000000'
-       cache: True
-     502:
-       response: '#ede9e3'
-       cache: False
-     other:
-       response: '#000000'
-       cache: False
-  gsi_transparent2012:
-    type: tile
-    grid: web
-    url: http://cyberjapandata.gsi.go.jp/xyz/transparent2012/%(tms_path)s.png
-    min_res: 305.748113140705
-    max_res: 4.777314267823516
-    coverage:
-      bbox: [122.9, 20.4, 154.0, 45.6]
-      srs: 'EPSG:4326'
-    transparent: true
-    on_error:
-     204:
-       response: '#000000'
-       cache: True
-     502:
-       response: '#ede9e3'
-       cache: False
-     other:
-       response: '#000000'
-       cache: False
-  gsi_brownshade2012:
-    type: tile
-    grid: web
-    url: http://cyberjapandata.gsi.go.jp/xyz/brownshade2012/%(tms_path)s.png
-    min_res: 305.748113140705
-    max_res: 4.777314267823516
-    coverage:
-      bbox: [122.9, 20.4, 154.0, 45.6]
-      srs: 'EPSG:4326'
-    transparent: true
-    on_error:
-     204:
-       response: '#000000'
-       cache: True
-     502:
-       response: '#ede9e3'
-       cache: False
-     other:
-       response: '#000000'
-       cache: False
-  gsi_greenshade2012:
-    type: tile
-    grid: web
-    url: http://cyberjapandata.gsi.go.jp/xyz/greenshade2012/%(tms_path)s.png
-    min_res: 305.748113140705
-    max_res: 4.777314267823516
-    coverage:
-      bbox: [122.9, 20.4, 154.0, 45.6]
-      srs: 'EPSG:4326'
-    transparent: true
-    on_error:
-     204:
-       response: '#000000'
-       cache: True
-     502:
-       response: '#ede9e3'
-       cache: False
-     other:
-       response: '#000000'
-       cache: False
-  gsi_monotone2012:
-    type: tile
-    grid: web
-    url: http://cyberjapandata.gsi.go.jp/xyz/monotone2012/%(tms_path)s.png
-    min_res: 4891.96981025128
-    max_res: 4.777314267823516
-    coverage:
-      bbox: [122.9, 20.4, 154.0, 45.6]
-      srs: 'EPSG:4326'
-    transparent: true
-    on_error:
-     204:
-       response: '#000000'
-       cache: True
-     502:
-       response: '#ede9e3'
-       cache: False
-     other:
-       response: '#000000'
-       cache: False
-  gsi_monotoneshade2012:
-    type: tile
-    grid: web
-    url: http://cyberjapandata.gsi.go.jp/xyz/monotoneshade2012/%(tms_path)s.png
-    min_res: 305.748113140705
-    max_res: 4.777314267823516
     coverage:
       bbox: [122.9, 20.4, 154.0, 45.6]
       srs: 'EPSG:4326'
@@ -322,26 +186,6 @@ sources:
     url: http://cyberjapandata.gsi.go.jp/xyz/english/%(tms_path)s.png
     min_res: 4891.96981025128
     max_res: 305.748113140705
-    coverage:
-      bbox: [122.9, 20.4, 154.0, 45.6]
-      srs: 'EPSG:4326'
-    transparent: true
-    on_error:
-     204:
-       response: '#000000'
-       cache: True
-     502:
-       response: '#ede9e3'
-       cache: False
-     other:
-       response: '#000000'
-       cache: False
-  gsi_relief:
-    type: tile
-    grid: web
-    url: http://cyberjapandata.gsi.go.jp/xyz/relief/%(tms_path)s.png
-    min_res: 4891.96981025128
-    max_res: 2.388657133911758
     coverage:
       bbox: [122.9, 20.4, 154.0, 45.6]
       srs: 'EPSG:4326'
