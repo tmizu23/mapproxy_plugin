@@ -1,0 +1,271 @@
+services:
+  demo:
+  wmts:
+  wms:
+   srs: ['EPSG:3857','EPSG:4326','EPSG:4612']
+   image_formats: ['image/png']
+   attribution:
+      text: "ecoris"
+   md:
+      title: エコリス地図タイル
+      abstract: この地図は「エコリス地図タイル」から配信されたデータです。
+      online_resource: http://map.ecoris.info
+      access_constraints:
+            ・許可なく複製頒布することはできません。
+            ・当サイトで利用しているデータは以下の承認を受けています。
+            ※「第5～7回自然環境保全基礎調査　植生調査結果(Shapeファイル)（環生多発第1304081号）」
+            ※「この地図の作成に当たっては、国土地理院長の承認を得て、同院発行の基盤地図情報を使用した。（承認番号 平22業使、第133号および平25情使、第353号）」
+            ・その他、詳細はこちらのサイトを御覧ください。http://map.ecoris.info
+     
+layers:
+  - name: hillshade
+    title: 陰影起伏
+    sources: [hill]
+  - name: vege
+    title: 第5回植生図（環境省）
+    sources: [vege]
+  - name: vege67
+    title: 第6、7回植生図（環境省）
+    sources: [vege67]
+  - name: tanbo
+    title: 田んぼ
+    sources: [tanbo]
+  - name: sugihinoki
+    title: スギ・ヒノキ・サワラ植林
+    sources: [sugihinoki]
+  - name: vegehill
+    title: 第5回植生図+陰影起伏
+    sources: [vegehill]
+  - name: vege67hill
+    title: 第6、7回植生図+陰影起伏
+    sources: [vege67hill]
+  - name: tanbohill
+    title: 田んぼ+陰影起伏
+    sources: [tanbohill]
+  - name: sugihinokihill
+    title: スギ・ヒノキ・サワラ植林+陰影起伏
+    sources: [sugihinokihill]
+    
+caches:
+  hill:
+    grids: [web]
+    sources: [hill]
+  vege:
+    grids: [web]
+    sources: [vege]
+  vege67:
+    grids: [web]
+    sources: [vege67]
+  tanbo:
+    grids: [web]
+    sources: [tanbo]
+  sugihinoki:
+    grids: [web]
+    sources: [sugihinoki]
+  vegehill:
+    grids: [web]
+    sources: [vegehill]
+  vege67hill:
+    grids: [web]
+    sources: [vege67hill]
+  tanbohill:
+    grids: [web]
+    sources: [tanbohill]
+  sugihinokihill:
+    grids: [web]
+    sources: [sugihinokihill]
+    
+sources:
+  hill:
+    type: tile
+    grid: web
+    url: http://map.ecoris.info/tiles/hill/%(tms_path)s.png
+    min_res: 4891.96981025128
+    max_res: 2.388657133911758
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  vege:
+    type: tile
+    grid: web
+    url: http://map.ecoris.info/tiles/vege/%(tms_path)s.png
+    min_res: 1222.99245256282
+    min_res: 4891.96981025128
+    max_res: 2.388657133911758
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  vege67:
+    type: tile
+    grid: web
+    url: http://map.ecoris.info/tiles/vege67/%(tms_path)s.png
+    min_res: 1222.99245256282
+    min_res: 4891.96981025128
+    max_res: 2.388657133911758
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  tanbo:
+    type: tile
+    grid: web
+    url: http://map.ecoris.info/tiles/tanbo/%(tms_path)s.png
+    min_res: 1222.99245256282
+    min_res: 4891.96981025128
+    max_res: 2.388657133911758
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  sugihinoki:
+    type: tile
+    grid: web
+    url: http://map.ecoris.info/tiles/sugihinoki/%(tms_path)s.png
+    min_res: 1222.99245256282
+    min_res: 4891.96981025128
+    max_res: 2.388657133911758
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  vegehill:
+    type: tile
+    grid: web
+    url: http://map.ecoris.info/tiles/vegehill/%(tms_path)s.png
+    min_res: 1222.99245256282
+    min_res: 4891.96981025128
+    max_res: 2.388657133911758
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  vege67hill:
+    type: tile
+    grid: web
+    url: http://map.ecoris.info/tiles/vege67hill/%(tms_path)s.png
+    min_res: 1222.99245256282
+    min_res: 4891.96981025128
+    max_res: 2.388657133911758
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  tanbohill:
+    type: tile
+    grid: web
+    url: http://map.ecoris.info/tiles/tanbohill/%(tms_path)s.png
+    min_res: 1222.99245256282
+    min_res: 4891.96981025128
+    max_res: 2.388657133911758
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  sugihinokihill:
+    type: tile
+    grid: web
+    url: http://map.ecoris.info/tiles/sugihinokihill/%(tms_path)s.png
+    min_res: 1222.99245256282
+    min_res: 4891.96981025128
+    max_res: 2.388657133911758
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+grids:
+  web:
+    base: GLOBAL_WEBMERCATOR
+
+globals:
