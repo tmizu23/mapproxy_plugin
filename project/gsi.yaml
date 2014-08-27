@@ -11,15 +11,12 @@ services:
       abstract: この地図データおよびオルソ画像は国土地理院から提供されたものである。
       online_resource: http://portal.cyberjapan.jp/
       access_constraints:
-            ・私的利用の範囲を超えて、背景地図等データを保存することはできません
-            ・A3サイズを超える印刷はできません。
+            ・地理院タイル一覧を参照の上、基本測量成果について必要な場合には測量法第29条及び第30条による承認の申請を行ってください。
+            ・著作権法第30条における私的使用に相当する範囲を越える利用に際しては出所の明示を行ってください。
             ・その他、以下サイトの利用規約に従う必要があります。
             http://portal.cyberjapan.jp/help/termsofuse.html
 
 layers:
-  - name: gsi_std2012
-    title: 地理院標準地図(在来版)
-    sources: [gsi_std2012]
   - name: gsi_std
     title: 地理院標準地図
     sources: [gsi_std]
@@ -105,24 +102,6 @@ caches:
     sources: [gsi_izuoshima20131017]
 
 sources:
-  gsi_std2012:
-    type: tile
-    grid: web
-    url: http://cyberjapandata.gsi.go.jp/xyz/std2012/%(tms_path)s.png
-    coverage:
-      bbox: [122.9, 20.4, 154.0, 45.6]
-      srs: 'EPSG:4326'
-    transparent: true
-    on_error:
-     204:
-       response: '#000000'
-       cache: True
-     502:
-       response: '#ede9e3'
-       cache: False
-     other:
-       response: '#000000'
-       cache: False
   gsi_std:
     type: tile
     grid: web
