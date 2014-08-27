@@ -79,7 +79,7 @@ class MapProxyPlugin:
 
     def addLayer(self, layerType):
         #if possible, set mapproxy service epsg to qgis project epsg
-        qgisepsg = str(self.iface.mapCanvas().mapRenderer().destinationCrs().authid())
+        qgisepsg = str(self.iface.mapCanvas().mapSettings().destinationCrs().authid())
         epsg = layerType.crs[0]
         for crs in layerType.crs:
             if qgisepsg == crs:
