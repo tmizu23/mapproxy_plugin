@@ -16,7 +16,7 @@ QApplication.installTranslator(translator)
 
 
 class MPLayerType:
-    def __init__(self, plugin, base, name, title, icon, crs):
+    def __init__(self, plugin, base, name, title, icon, crs, access_constraints):
         self.__plugin = plugin
         self.base = base
         self.name = name
@@ -24,6 +24,7 @@ class MPLayerType:
         self.icon = icon
         self.crs = crs
         self.id = None
+        self.access_constraints = access_constraints.replace('\r\n','<br>').replace(' ','<br>')
 
     def addLayer(self):
         self.__plugin.addLayer(self)
@@ -78,6 +79,8 @@ class MapProxyPlugin:
         mapproxy_execute.kill()
 
     def addLayer(self, layerType):
+        QMessageBox.information(None, "access_constraints",layerType.access_constraints)
+
         #if possible, set mapproxy service epsg to qgis project epsg
         qgisepsg = str(self.iface.mapCanvas().mapSettings().destinationCrs().authid())
         epsg = layerType.crs[0]
@@ -124,7 +127,7 @@ class MapProxyPlugin:
             for layer in yd['layers']:
                 self.mpLayerTypeRegistry.add(
                     MPLayerType(self, filebase, layer['name'], layer['title'], filebase + '.png',
-                                yd['services']['wms']['srs']))
+                                yd['services']['wms']['srs'],yd['services']['wms']['md']['access_constraints']))
         for layerType in self.mpLayerTypeRegistry.types():
             action = QAction(QIcon(pathPlugin % layerType.icon), layerType.title, self.iface.mainWindow())
             self.layerAddActions.append(action)
