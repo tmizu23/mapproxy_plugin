@@ -79,7 +79,7 @@ class MapProxyPlugin:
         mapproxy_execute.kill()
 
     def addLayer(self, layerType):
-        QMessageBox.information(None, "access_constraints",layerType.access_constraints)
+        QMessageBox.information(None, "Information:",layerType.access_constraints)
 
         #if possible, set mapproxy service epsg to qgis project epsg
         qgisepsg = str(self.iface.mapCanvas().mapSettings().destinationCrs().authid())
