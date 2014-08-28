@@ -75,6 +75,8 @@ class MapProxyPlugin:
 
         self.iface.removePluginMenu("MapProxy plugin", self.installAddAction)
         self.iface.removePluginMenu("MapProxy plugin", self.runAddAction)
+        self.iface.removePluginMenu("MapProxy plugin", self.readmeAddAction)
+        self.iface.removePluginMenu("MapProxy plugin", self.cacheAddAction)
 
         mapproxy_execute.kill()
 
