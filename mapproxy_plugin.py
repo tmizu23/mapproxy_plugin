@@ -14,9 +14,69 @@ translator.load(
     os.path.dirname(os.path.abspath(__file__)) + "/i18n/mapproxyplugin_" + QLocale.system().name()[0:2] + ".qm")
 QApplication.installTranslator(translator)
 
+## about credit drawing
+## reference:
+## https://github.com/sourcepole/qgis-watermark-plugin
+## https://github.com/minorua/TileLayerPlugin
+
+class MPCreditType(QgsPluginLayerType):
+
+  def __init__(self):
+    QgsPluginLayerType.__init__(self, MPCredit.LAYER_TYPE)
+
+  def createLayer(self):
+    return MPCredit()
+
+  def showLayerProperties(self, layer):
+    layer.updateText()
+
+    # indicate that we have shown the properties dialog
+    return True
+
+class MPCredit(QgsPluginLayer):
+
+  LAYER_TYPE="credit"
+
+  def __init__(self,credit):
+    QgsPluginLayer.__init__(self, MPCredit.LAYER_TYPE, "credit")
+    self.setValid(True)
+    self.credit=credit
+    #self.credit = "Image produced and distributed by AIST, Source of Landsat 8 data: U.S. Geological Survey."
+
+  def draw(self, rendererContext):
+
+      painter = rendererContext.painter()
+      extent = rendererContext.extent()
+      mapToPixel = rendererContext.mapToPixel()
+      rasterScaleFactor = rendererContext.rasterScaleFactor()
+      invRasterScaleFactor = 1.0/rasterScaleFactor
+
+      topleft = mapToPixel.transform(extent.xMinimum(), extent.yMaximum())
+      bottomright = mapToPixel.transform(extent.xMaximum(), extent.yMinimum())
+      width = (bottomright.x() - topleft.x()) * rasterScaleFactor
+      height = (bottomright.y() - topleft.y()) * rasterScaleFactor
+
+      # setup painter
+      painter.save()
+      painter.scale(invRasterScaleFactor, invRasterScaleFactor)
+    
+      rect = QRect(0, 0, width, height)
+      textRect = painter.boundingRect(rect, Qt.AlignBottom | Qt.AlignRight, self.credit)
+      bgRect = QRect(textRect.left() - 3, textRect.top() - 2, textRect.width() + 3, textRect.height()+2)
+      painter.fillRect(bgRect, QColor(240, 240, 240, 150))
+      painter.drawText(rect, Qt.AlignBottom | Qt.AlignRight, self.credit)
+      painter.restore()
+    
+      return True
+
+  def updateText(self):
+      text, ok = QInputDialog.getText(None, 'Input Dialog', 'Enter credit:',0,self.credit)
+      if ok:
+        self.credit = text
+        self.emit(SIGNAL("repaintRequested()"))
 
 class MPLayerType:
-    def __init__(self, plugin, base, name, title, icon, crs, access_constraints):
+    def __init__(self, plugin, base, name, title, icon, crs, abstract,access_constraints):
         self.__plugin = plugin
         self.base = base
         self.name = name
@@ -24,7 +84,8 @@ class MPLayerType:
         self.icon = icon
         self.crs = crs
         self.id = None
-        self.access_constraints = access_constraints.replace('\r\n','<br>').replace(' ','<br>')
+        self.credit = abstract
+        self.access_constraints = access_constraints.replace('\n','<br>')#.replace(' ','<br>')
 
     def addLayer(self):
         self.__plugin.addLayer(self)
@@ -66,6 +127,8 @@ class MapProxyPlugin:
         self.cacheAddAction = QAction(QIcon(pathPlugin % "cache.png"), "Remove Cache", self.iface.mainWindow())
         QObject.connect(self.cacheAddAction, SIGNAL("triggered()"), self.cache)
         self.iface.addPluginToMenu("MapProxy plugin", self.cacheAddAction)
+        
+        QgsPluginLayerRegistry.instance().addPluginLayerType(MPCreditType())
 
     def unload(self):
         # Remove the plugin menu item and icon
@@ -77,7 +140,14 @@ class MapProxyPlugin:
         self.iface.removePluginMenu("MapProxy plugin", self.runAddAction)
         self.iface.removePluginMenu("MapProxy plugin", self.readmeAddAction)
         self.iface.removePluginMenu("MapProxy plugin", self.cacheAddAction)
+        
+        QgsPluginLayerRegistry.instance().removePluginLayerType(MPCredit.LAYER_TYPE)
+        mapproxy_execute.kill()
 
+    def stopMapproxy(self):
+        if hasattr(self, 'layerAddActions'):
+            for action in self.layerAddActions:
+                self.iface.removePluginMenu("MapProxy plugin", action)
         mapproxy_execute.kill()
 
     def addLayer(self, layerType):
@@ -93,10 +163,14 @@ class MapProxyPlugin:
         self.iface.addRasterLayer(
             "crs=" + epsg + "&layers=" + layerType.name + "&styles=&format=image/png&url=http://localhost:8080/" + layerType.base + "/service?",
             layerType.name, "wms")
+
+        credit = MPCredit(layerType.credit)
+        QgsMapLayerRegistry.instance().addMapLayer(credit)
         #if WMTS
         #self.iface.addRasterLayer("url=http://localhost:8080/" + layerType.base + "/service?service=wmts&version=1.0.0&tileMatrixSet=web&crs=EPSG:3857&layers=" + layerType.name + "&styles=&format=image/png",layerType.name,"wms")
 
     def run(self):
+        self.stopMapproxy()
         pathPlugin = "%s%s%%s" % ( os.path.dirname(__file__), os.path.sep )
         if not os.path.isdir(pathPlugin % "bin" + os.sep + "mypython"):
             QMessageBox.information(None, "Information:",
@@ -129,7 +203,7 @@ class MapProxyPlugin:
             for layer in yd['layers']:
                 self.mpLayerTypeRegistry.add(
                     MPLayerType(self, filebase, layer['name'], layer['title'], filebase + '.png',
-                                yd['services']['wms']['srs'],yd['services']['wms']['md']['access_constraints']))
+                                yd['services']['wms']['srs'],yd['services']['wms']['md']['abstract'],yd['services']['wms']['md']['access_constraints']))
         for layerType in self.mpLayerTypeRegistry.types():
             action = QAction(QIcon(pathPlugin % layerType.icon), layerType.title, self.iface.mainWindow())
             self.layerAddActions.append(action)

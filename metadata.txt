@@ -2,11 +2,14 @@
 name=MapProxy Plugin
 qgisMinimumVersion=2.0
 description=This plugin allows you to access to the tiled map images from QGIS by installing MapProxy to local PC. For added layer, you can change the projection and access the property by QGIS. The map setting is easy by configuring mapproxy's yaml file. 
-version=1.0.1
+version=1.0.2
 author=Takayuki Mizutani(ecoris inc.) and other contributors
 email=map@ecoris.co.jp
 
 changelog=
+  1.0.2
+    - add landsat8 project.
+    - add credit layer 
   1.0.1
     - add project files
   1.0.0
