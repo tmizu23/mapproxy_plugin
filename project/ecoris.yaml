@@ -4,8 +4,8 @@ services:
   wms:
    srs: ['EPSG:3857','EPSG:4326','EPSG:4612']
    image_formats: ['image/png']
-   attribution:
-      text: "ecoris"
+   #attribution:
+   #   text: "ecoris"
    md:
       title: エコリス地図タイル
       abstract: エコリス地図タイル

@@ -256,6 +256,125 @@ sources:
      other:
        response: '#000000'
        cache: False
+  gsi_std2012-1:
+    type: tile
+    grid: web
+    url: http://cyberjapandata.gsi.go.jp/xyz/std2012/%(tms_path)s.png
+    min_res: 0.5971642834779395
+    max_res: 0.29858214173896974
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  gsi_std2012-2:
+    type: tile
+    grid: web
+    url: http://cyberjapandata.gsi.go.jp/xyz/std2012/%(tms_path)s.png
+    min_res: 4.777314267823516
+    max_res: 0.5971642834779395
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  gsi_std2012-3:
+    type: tile
+    grid: web
+    url: http://cyberjapandata.gsi.go.jp/xyz/std2012/%(tms_path)s.png
+    min_res: 38.21851414258813
+    max_res: 4.777314267823516
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  gsi_std-4:
+    type: tile
+    grid: web
+    url: http://cyberjapandata.gsi.go.jp/xyz/std/%(tms_path)s.png
+    min_res: 305.748113140705
+    max_res: 38.21851414258813
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  gsi_std-5:
+    type: tile
+    grid: web
+    url: http://cyberjapandata.gsi.go.jp/xyz/std/%(tms_path)s.png
+    min_res: 4891.96981025128
+    max_res: 305.748113140705
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  gsi_std-6:
+    type: tile
+    grid: web
+    url: http://cyberjapandata.gsi.go.jp/xyz/std/%(tms_path)s.png
+    max_res: 4891.96981025128
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
 grids:
   web:
     base: GLOBAL_WEBMERCATOR

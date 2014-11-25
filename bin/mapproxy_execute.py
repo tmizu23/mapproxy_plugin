@@ -12,7 +12,7 @@ def run(projectdir):
     else:
         cmd = "source " + mydir + os.sep + "run.sh " + projectdir
     p = subprocess.Popen(cmd, shell=True)
-    return myos
+    return
 
 
 def install():
@@ -26,10 +26,10 @@ def install():
 
 def kill():
     if myos == "Windows":
-        cmd = ""
+        cmd = "\"" + mydir + os.sep + "kill.bat\""
     else:
         cmd = "kill `ps -ef|grep mapproxy_plugin/bin/mypython|awk '{print $2;}'`"
-    p = subprocess.Popen(cmd, shell=True)
+    p = subprocess.call(cmd, shell=True)
     return p
 
 

@@ -25,7 +25,7 @@ class MPCreditType(QgsPluginLayerType):
     QgsPluginLayerType.__init__(self, MPCredit.LAYER_TYPE)
 
   def createLayer(self):
-    return MPCredit()
+    return MPCredit("","")
 
   def showLayerProperties(self, layer):
     layer.updateText()
@@ -37,12 +37,13 @@ class MPCredit(QgsPluginLayer):
 
   LAYER_TYPE="credit"
 
-  def __init__(self,credit):
-    QgsPluginLayer.__init__(self, MPCredit.LAYER_TYPE, "credit")
-    self.setValid(True)
-    self.credit=credit
-    #self.credit = "Image produced and distributed by AIST, Source of Landsat 8 data: U.S. Geological Survey."
-
+  def __init__(self,qgisepsg,credit):
+     QgsPluginLayer.__init__(self, MPCredit.LAYER_TYPE, "credit")
+     self.setValid(True)
+     self.credit=credit
+     self.setCustomProperty("credit", credit)
+     self.setCrs(QgsCoordinateReferenceSystem(qgisepsg))
+  
   def draw(self, rendererContext):
 
       painter = rendererContext.painter()
@@ -74,6 +75,19 @@ class MPCredit(QgsPluginLayer):
       if ok:
         self.credit = text
         self.emit(SIGNAL("repaintRequested()"))
+
+  def readXml(self, node):
+    self.readCustomProperties(node)
+    self.credit = self.customProperty("credit", "")
+    return True
+
+  def writeXml(self, node, doc):
+    element = node.toElement();
+    element.setAttribute("type", "plugin")
+    element.setAttribute("name", MPCredit.LAYER_TYPE)
+    return True
+
+
 
 class MPLayerType:
     def __init__(self, plugin, base, name, title, icon, crs, abstract,access_constraints):
@@ -111,7 +125,9 @@ class MPLayerTypeRegistry:
 class MapProxyPlugin:
     def __init__(self, iface):
         self.iface = iface
-
+        self.layers ={}
+        self.pathPlugin = os.path.dirname(__file__)
+        QObject.connect(QgsMapLayerRegistry.instance(), SIGNAL("layerRemoved(QString)"), self.layerRemoved)
 
     def initGui(self):
         pathPlugin = "%s%s%%s" % ( os.path.dirname(__file__), os.path.sep )
@@ -129,6 +145,9 @@ class MapProxyPlugin:
         self.iface.addPluginToMenu("MapProxy plugin", self.cacheAddAction)
         
         QgsPluginLayerRegistry.instance().addPluginLayerType(MPCreditType())
+        #if mapproxy has installed, and autorun 
+        if os.path.isdir(self.pathPlugin + os.sep + "bin" + os.sep + "mypython") and os.path.isfile(self.pathPlugin + os.sep + "bin" + os.sep + "autorun.ini"):
+           self.run("auto")
 
     def unload(self):
         # Remove the plugin menu item and icon
@@ -142,7 +161,13 @@ class MapProxyPlugin:
         self.iface.removePluginMenu("MapProxy plugin", self.cacheAddAction)
         
         QgsPluginLayerRegistry.instance().removePluginLayerType(MPCredit.LAYER_TYPE)
+        QObject.disconnect(QgsMapLayerRegistry.instance(), SIGNAL("layerRemoved(QString)"), self.layerRemoved)
+
         mapproxy_execute.kill()
+
+    def layerRemoved(self, layerId):
+        if layerId in self.layers:
+           del self.layers[layerId]
 
     def stopMapproxy(self):
         if hasattr(self, 'layerAddActions'):
@@ -152,44 +177,46 @@ class MapProxyPlugin:
 
     def addLayer(self, layerType):
         QMessageBox.information(None, "Information:",layerType.access_constraints)
-
+        
         #if possible, set mapproxy service epsg to qgis project epsg
         qgisepsg = str(self.iface.mapCanvas().mapSettings().destinationCrs().authid())
         epsg = layerType.crs[0]
         for crs in layerType.crs:
             if qgisepsg == crs:
                 epsg = crs
+                QMessageBox.information(None, "Info:",qgisepsg)
+        #if qgisepsg == "":
+        #   self.iface.mapCanvas().mapSettings().setDestinationCrs(QgsCoordinateReferenceSystem(epsg))
 
         self.iface.addRasterLayer(
             "crs=" + epsg + "&layers=" + layerType.name + "&styles=&format=image/png&url=http://localhost:8080/" + layerType.base + "/service?",
             layerType.name, "wms")
 
-        credit = MPCredit(layerType.credit)
+        credit = MPCredit(qgisepsg,layerType.credit)
         QgsMapLayerRegistry.instance().addMapLayer(credit)
+        self.layers[credit.id()]=credit
+
         #if WMTS
         #self.iface.addRasterLayer("url=http://localhost:8080/" + layerType.base + "/service?service=wmts&version=1.0.0&tileMatrixSet=web&crs=EPSG:3857&layers=" + layerType.name + "&styles=&format=image/png",layerType.name,"wms")
 
-    def run(self):
+    def run(self,opt="manual"):
+        #if mapproxy has not installed
+        if not os.path.isdir(self.pathPlugin + os.sep + "bin" + os.sep + "mypython"):
+           QMessageBox.information(None, "Information:",QCoreApplication.translate("message", "You need to install mapproxy first"))
+           return
+        if opt=="manual":
+           rep = QMessageBox.question(None, "Info:", QCoreApplication.translate("message","Will you set autostart option? Mapproxy will run when you open the qgis. You can confirm the state on http://localhost:8080"),QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+           if rep == QMessageBox.Yes:
+              f = open(self.pathPlugin + os.sep + "bin" + os.sep + "autorun.ini", "w")
+              f.write("1")
+              f.close()
+           else:
+              os.remove(self.pathPlugin + os.sep + "bin" + os.sep + "autorun.ini")
+
         self.stopMapproxy()
-        pathPlugin = "%s%s%%s" % ( os.path.dirname(__file__), os.path.sep )
-        if not os.path.isdir(pathPlugin % "bin" + os.sep + "mypython"):
-            QMessageBox.information(None, "Information:",
-                                    QCoreApplication.translate("message", "You need to install mapproxy first"))
-            return
-
-        projectdir = pathPlugin % "project"
-        myos = mapproxy_execute.run("\"" + projectdir + "\"")
-        if myos == "Windows":
-            rep = QMessageBox.question(None, "Info:", QCoreApplication.translate("message",
-                                                                                 "Are you sure you want to run mapproxy? It will run on Command Prompt.Please close it by hand when you'll stop.You can confirm the state on http://localhost:8080"),
-                                       QMessageBox.Yes | QMessageBox.Cancel, QMessageBox.Yes)
-        else:
-            rep = QMessageBox.question(None, "Info:", QCoreApplication.translate("message",
-                                                                                 "Are you sure you want to run mapproxy? You can confirm the state on http://localhost:8080"),
-                                       QMessageBox.Yes | QMessageBox.Cancel, QMessageBox.Yes)
-
-        if rep == QMessageBox.Cancel:
-            return
+        projectdir = self.pathPlugin + os.sep + "project"
+        mapproxy_execute.run("\"" + projectdir + "\"")
+        
 
         #Layers
         files = glob.glob(projectdir + os.sep + "*.yaml")
@@ -205,7 +232,7 @@ class MapProxyPlugin:
                     MPLayerType(self, filebase, layer['name'], layer['title'], filebase + '.png',
                                 yd['services']['wms']['srs'],yd['services']['wms']['md']['abstract'],yd['services']['wms']['md']['access_constraints']))
         for layerType in self.mpLayerTypeRegistry.types():
-            action = QAction(QIcon(pathPlugin % layerType.icon), layerType.title, self.iface.mainWindow())
+            action = QAction(QIcon(self.pathPlugin + os.sep + layerType.icon), layerType.title, self.iface.mainWindow())
             self.layerAddActions.append(action)
             QObject.connect(action, SIGNAL("triggered()"), layerType.addLayer)
             self.iface.addPluginToMenu("MapProxy plugin", action)
