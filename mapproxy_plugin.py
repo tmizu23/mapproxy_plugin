@@ -3,16 +3,20 @@ import sys, os, glob, shutil
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from PyQt4.QtWebKit import *
+from qgis.gui import QgsMessageBar
 from qgis.core import *
+from landsat8_dialog import landsat8Dialog
+from time_goes_by import *
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/bin')
 import mapproxy_execute
-
+import landsat8_util
 
 translator = QTranslator()
 translator.load(
     os.path.dirname(os.path.abspath(__file__)) + "/i18n/mapproxyplugin_" + QLocale.system().name()[0:2] + ".qm")
 QApplication.installTranslator(translator)
+
 
 ## about credit drawing
 ## reference:
@@ -21,11 +25,12 @@ QApplication.installTranslator(translator)
 
 class MPCreditType(QgsPluginLayerType):
 
-  def __init__(self):
+  def __init__(self,plugin):
     QgsPluginLayerType.__init__(self, MPCredit.LAYER_TYPE)
+    self.plugin = plugin
 
   def createLayer(self):
-    return MPCredit("","")
+    return MPCredit(self.plugin,"","")
 
   def showLayerProperties(self, layer):
     layer.updateText()
@@ -35,15 +40,20 @@ class MPCreditType(QgsPluginLayerType):
 
 class MPCredit(QgsPluginLayer):
 
-  LAYER_TYPE="credit"
+  LAYER_TYPE="MPCredit"
 
-  def __init__(self,qgisepsg,credit):
+  def __init__(self,plugin,qgisepsg,credit):
      QgsPluginLayer.__init__(self, MPCredit.LAYER_TYPE, "credit")
-     self.setValid(True)
+     self.plugin=plugin
      self.credit=credit
      self.setCustomProperty("credit", credit)
-     self.setCrs(QgsCoordinateReferenceSystem(qgisepsg))
-  
+     self.epsg = qgisepsg
+     if self.epsg=="":
+        self.epsg = self.plugin.iface.mapCanvas().mapSettings().destinationCrs().authid()
+     self.setCrs(QgsCoordinateReferenceSystem(self.epsg))
+     self.setValid(True)
+     QObject.connect(self, SIGNAL("showBarMessage(QString, QString, int, int)"), self.showBarMessageSlot)
+
   def draw(self, rendererContext):
 
       painter = rendererContext.painter()
@@ -66,8 +76,25 @@ class MPCredit(QgsPluginLayer):
       bgRect = QRect(textRect.left() - 3, textRect.top() - 2, textRect.width() + 3, textRect.height()+2)
       painter.fillRect(bgRect, QColor(240, 240, 240, 150))
       painter.drawText(rect, Qt.AlignBottom | Qt.AlignRight, self.credit)
-      painter.restore()
+      
+
+      ### joke
+      p = QgsPoint(139.748806, 35.648167)
+      extent = QgsGeometry.fromWkt(self.plugin.iface.mapCanvas().extent().asWktPolygon()) 
+      extent.transform(QgsCoordinateTransform(self.plugin.iface.mapCanvas().mapSettings().destinationCrs(),QgsCoordinateReferenceSystem(4326)))
+      if self.plugin.iface.mapCanvas().scale() < 50000:
+         if (extent.boundingBox().xMinimum() < p.x() < extent.boundingBox().xMaximum()) and (extent.boundingBox().yMinimum() < p.y() < extent.boundingBox().yMaximum()):
+           px = -32 + painter.viewport().width() * (p.x()-extent.boundingBox().xMinimum())/(extent.boundingBox().xMaximum()-extent.boundingBox().xMinimum())
+           py = -64 + painter.viewport().height() - painter.viewport().height() * (p.y()-extent.boundingBox().yMinimum())/(extent.boundingBox().yMaximum()-extent.boundingBox().yMinimum())
+         
+           painter.drawImage(px, py, QImage(self.plugin.pathPlugin + os.sep + "santa.png"))
     
+      painter.restore()
+
+      if self.plugin.iface.mapCanvas().scale() > 10000000:
+         self.showBarMessage("Please zoom in more", QgsMessageBar.INFO,5,"Mapproxy Plugin:")
+      
+
       return True
 
   def updateText(self):
@@ -87,7 +114,12 @@ class MPCredit(QgsPluginLayer):
     element.setAttribute("name", MPCredit.LAYER_TYPE)
     return True
 
+  def showBarMessage(self, text, level=QgsMessageBar.INFO, duration=0, title=None):
+    self.emit(SIGNAL("showBarMessage(QString, QString, int, int)"), title, text, level, duration)
 
+  def showBarMessageSlot(self, title, text, level, duration):
+    self.plugin.iface.messageBar().pushMessage(title, text, level, duration)
+  
 
 class MPLayerType:
     def __init__(self, plugin, base, name, title, icon, crs, abstract,access_constraints):
@@ -130,21 +162,29 @@ class MapProxyPlugin:
         QObject.connect(QgsMapLayerRegistry.instance(), SIGNAL("layerRemoved(QString)"), self.layerRemoved)
 
     def initGui(self):
-        pathPlugin = "%s%s%%s" % ( os.path.dirname(__file__), os.path.sep )
-        self.readmeAddAction = QAction(QIcon(pathPlugin % "readme.png"), "ReadMe", self.iface.mainWindow())
+        self.lsat8dlg = landsat8Dialog()
+        self.readmeAddAction = QAction(QIcon(self.pathPlugin + os.sep + "readme.png"), "ReadMe", self.iface.mainWindow())
         QObject.connect(self.readmeAddAction, SIGNAL("triggered()"), self.readme)
         self.iface.addPluginToMenu("MapProxy plugin", self.readmeAddAction)
-        self.installAddAction = QAction(QIcon(pathPlugin % "mapproxy.png"), "Install MapProxy", self.iface.mainWindow())
+        self.installAddAction = QAction(QIcon(self.pathPlugin + os.sep + "mapproxy.png"), "Install MapProxy", self.iface.mainWindow())
         QObject.connect(self.installAddAction, SIGNAL("triggered()"), self.install)
         self.iface.addPluginToMenu("MapProxy plugin", self.installAddAction)
-        self.runAddAction = QAction(QIcon(pathPlugin % "mapproxy_run.png"), "Run MapProxy", self.iface.mainWindow())
+        self.runAddAction = QAction(QIcon(self.pathPlugin + os.sep + "mapproxy_run.png"), "Run MapProxy", self.iface.mainWindow())
         QObject.connect(self.runAddAction, SIGNAL("triggered()"), self.run)
         self.iface.addPluginToMenu("MapProxy plugin", self.runAddAction)
-        self.cacheAddAction = QAction(QIcon(pathPlugin % "cache.png"), "Remove Cache", self.iface.mainWindow())
+        self.cacheAddAction = QAction(QIcon(self.pathPlugin + os.sep + "cache.png"), "Remove Cache", self.iface.mainWindow())
         QObject.connect(self.cacheAddAction, SIGNAL("triggered()"), self.cache)
         self.iface.addPluginToMenu("MapProxy plugin", self.cacheAddAction)
         
-        QgsPluginLayerRegistry.instance().addPluginLayerType(MPCreditType())
+        self.landsat8MapGeneratorAction = QAction(QIcon(self.pathPlugin + os.sep + "satellite.png"), "Landsat8 MapGenerator", self.iface.mainWindow())
+        QObject.connect(self.landsat8MapGeneratorAction, SIGNAL("triggered()"), self.landsat8mapgenerator)
+        self.iface.addPluginToMenu("MapProxy plugin", self.landsat8MapGeneratorAction)
+        self.landsat8GetDataAction = QAction(QIcon(self.pathPlugin + os.sep + "satellite.png"), "Landsat8 GetData", self.iface.mainWindow())
+        QObject.connect(self.landsat8GetDataAction, SIGNAL("triggered()"), self.landsat8getdata)
+        self.iface.addPluginToMenu("MapProxy plugin", self.landsat8GetDataAction)
+
+        self.mpCreditType = MPCreditType(self)
+        QgsPluginLayerRegistry.instance().addPluginLayerType(self.mpCreditType)
         #if mapproxy has installed, and autorun 
         if os.path.isdir(self.pathPlugin + os.sep + "bin" + os.sep + "mypython") and os.path.isfile(self.pathPlugin + os.sep + "bin" + os.sep + "autorun.ini"):
            self.run("auto")
@@ -159,7 +199,8 @@ class MapProxyPlugin:
         self.iface.removePluginMenu("MapProxy plugin", self.runAddAction)
         self.iface.removePluginMenu("MapProxy plugin", self.readmeAddAction)
         self.iface.removePluginMenu("MapProxy plugin", self.cacheAddAction)
-        
+        self.iface.removePluginMenu("MapProxy plugin", self.landsat8MapGeneratorAction)
+        self.iface.removePluginMenu("MapProxy plugin", self.landsat8GetDataAction)
         QgsPluginLayerRegistry.instance().removePluginLayerType(MPCredit.LAYER_TYPE)
         QObject.disconnect(QgsMapLayerRegistry.instance(), SIGNAL("layerRemoved(QString)"), self.layerRemoved)
 
@@ -184,7 +225,6 @@ class MapProxyPlugin:
         for crs in layerType.crs:
             if qgisepsg == crs:
                 epsg = crs
-                QMessageBox.information(None, "Info:",qgisepsg)
         #if qgisepsg == "":
         #   self.iface.mapCanvas().mapSettings().setDestinationCrs(QgsCoordinateReferenceSystem(epsg))
 
@@ -192,7 +232,7 @@ class MapProxyPlugin:
             "crs=" + epsg + "&layers=" + layerType.name + "&styles=&format=image/png&url=http://localhost:8080/" + layerType.base + "/service?",
             layerType.name, "wms")
 
-        credit = MPCredit(qgisepsg,layerType.credit)
+        credit = MPCredit(self,qgisepsg,layerType.credit)
         QgsMapLayerRegistry.instance().addMapLayer(credit)
         self.layers[credit.id()]=credit
 
@@ -229,7 +269,7 @@ class MapProxyPlugin:
 
             for layer in yd['layers']:
                 self.mpLayerTypeRegistry.add(
-                    MPLayerType(self, filebase, layer['name'], layer['title'], filebase + '.png',
+                    MPLayerType(self, filebase, layer['name'], layer['title'], filebase.split('_')[0] + '.png',
                                 yd['services']['wms']['srs'],yd['services']['wms']['md']['abstract'],yd['services']['wms']['md']['access_constraints']))
         for layerType in self.mpLayerTypeRegistry.types():
             action = QAction(QIcon(self.pathPlugin + os.sep + layerType.icon), layerType.title, self.iface.mainWindow())
@@ -256,16 +296,161 @@ class MapProxyPlugin:
                                    QCoreApplication.translate("message", "Are you sure you want to remove cache?"),
                                    QMessageBox.Yes | QMessageBox.Cancel, QMessageBox.Yes)
         if rep == QMessageBox.Yes:
-            pathPlugin = "%s%s%%s" % ( os.path.dirname(__file__), os.path.sep )
-            shutil.rmtree(pathPlugin % "project" + os.sep + "cache_data", True)
+            shutil.rmtree(self.pathPlugin + os.sep + "project" + os.sep + "cache_data", True)
 
     def readme(self):
-        pathPlugin = "%s%s%%s" % ( os.path.dirname(__file__), os.path.sep )
-        projectdir = pathPlugin % "project"
+        projectdir = self.pathPlugin + os.sep + "project"
         QMessageBox.information(None, "ReadMe", QCoreApplication.translate("message", "<h1>MapProxy Plugin</h1>"
                                                                                       "<ol>"
                                                                                       "<li>Install mapproxy</li>"
                                                                                       "<li>Run mapproxy. If success, layers are added in the menu</li>"
                                                                                       "<li>Select layer</li>"
                                                                                       "</ol>"
-                                                                                      "<p>you can set layers by configuring yaml mapproxy file in this dirctory.<br>" + projectdir + "</p>"))
+                                                                                      "<p>you can set layers by configuring yaml mapproxy file in this dirctory.<br>"
+                                                                                      "<a href='file:///" + projectdir + "'>" + projectdir + "</a></p>"))
+
+    def landsat8getdata(self):
+        self.arealayer = self.iface.addVectorLayer(self.pathPlugin + os.sep + 'landsat8area.shp','LANDSAT AREA','ogr')
+        QMessageBox.information(None, "Usage", "Information Toolbar-->Select Area --> Run 'Action' (Landsat8 GetData)")
+
+
+    def landsat8mapgenerator(self,pos=""):
+        if pos=="":
+           _fromUtf8 = lambda s: s
+           self.lsat8dlg.setWindowTitle("Landsat8 MapGenerator")
+           icon = QIcon()
+           icon.addPixmap(QPixmap(_fromUtf8(":/icon images/sun.png")), QIcon.Normal, QIcon.Off)
+           self.lsat8dlg.pushButton.setIcon(icon)
+           self.lsat8dlg.pushButton.setText("I'm feeling fine")
+           icon = QIcon()
+           icon.addPixmap(QPixmap(_fromUtf8(":/icon images/cloud.png")), QIcon.Normal, QIcon.Off)
+           self.lsat8dlg.pushButton_2.setIcon(icon)
+           self.lsat8dlg.pushButton_2.setText("I'm feeling cloudy")
+
+
+           self.lsat8dlg.pushButton.clicked.connect(self.feeling_fine)
+           self.lsat8dlg.pushButton_2.clicked.connect(self.feeling_cloudy)
+           self.lsat8dlg.show()
+           result = self.lsat8dlg.exec_()
+           if result:
+              pass
+           self.lsat8dlg.pushButton.clicked.disconnect(self.feeling_fine)
+           self.lsat8dlg.pushButton_2.clicked.disconnect(self.feeling_cloudy)
+        else:
+           self.path = pos.split('_')[0]
+           self.row = pos.split('_')[1]
+           self.lsat8dlg.setWindowTitle("Landsat8 GetData [path:" + self.path + " row:" + self.row + "]")
+           self.lsat8dlg.pushButton.setIcon(QIcon())
+           self.lsat8dlg.pushButton.setText("GetWMS (all dates)")
+           self.lsat8dlg.pushButton_2.setIcon(QIcon())
+           self.lsat8dlg.pushButton_2.setText("GetWCS (most fine date)")
+
+
+           self.lsat8dlg.pushButton.clicked.connect(self.getWMS)
+           self.lsat8dlg.pushButton.clicked.connect(self.lsat8dlg.accept)
+           self.lsat8dlg.pushButton_2.clicked.connect(self.getWCS)
+           self.lsat8dlg.pushButton_2.clicked.connect(self.lsat8dlg.accept)
+           self.lsat8dlg.show()
+           result = self.lsat8dlg.exec_()
+           if result:
+              pass
+           self.lsat8dlg.pushButton.clicked.disconnect(self.getWMS)
+           self.lsat8dlg.pushButton.clicked.disconnect(self.lsat8dlg.accept)
+           self.lsat8dlg.pushButton_2.clicked.disconnect(self.getWCS)
+           self.lsat8dlg.pushButton_2.clicked.connect(self.lsat8dlg.accept)
+       
+    def feeling_fine(self):
+         type = "fine"
+         date_start = self.lsat8dlg.dateEdit.date().toString("yyyy-MM-dd")
+         date_end = self.lsat8dlg.dateEdit_2.date().toString("yyyy-MM-dd")
+         cloud_start = str(self.lsat8dlg.horizontalSlider.lowerValue)
+         cloud_end = str(self.lsat8dlg.horizontalSlider.upperValue)
+         name = "landsat8_" + date_start +"_"+ date_end +"_"+cloud_start+"_"+cloud_end+"_"+"fine"
+         output = self.pathPlugin + os.sep + "project" + os.sep + name + ".yaml"
+         landsat8_util.search_and_generate(type,date_start,date_end,cloud_start,cloud_end,output)
+         self.run("auto")
+         self.lsat8dlg.accept()
+         for layerType in self.mpLayerTypeRegistry.types():
+           if layerType.name == name:
+              self.addLayer(layerType)
+
+
+    def feeling_cloudy(self):
+         type = "cloudy"
+         date_start = self.lsat8dlg.dateEdit.date().toString("yyyy-MM-dd")
+         date_end = self.lsat8dlg.dateEdit_2.date().toString("yyyy-MM-dd")
+         cloud_start = str(self.lsat8dlg.horizontalSlider.lowerValue)
+         cloud_end = str(self.lsat8dlg.horizontalSlider.upperValue)
+         name = "landsat8_" + date_start +"_"+ date_end +"_"+cloud_start+"_"+cloud_end+"_"+"cloudy"
+         output = self.pathPlugin + os.sep + "project" + os.sep + name + ".yaml"
+         landsat8_util.search_and_generate(type,date_start,date_end,cloud_start,cloud_end,output)
+         self.run("auto")
+         self.lsat8dlg.accept()
+         for layerType in self.mpLayerTypeRegistry.types():
+           if layerType.name == name:
+              self.addLayer(layerType)
+ 
+    def getWMS(self):      
+         path_start = self.path
+         path_end = self.path
+         row_start = self.row
+         row_end = self.row
+         type = "fine"
+         date_start = self.lsat8dlg.dateEdit.date().toString("yyyy-MM-dd")
+         date_end = self.lsat8dlg.dateEdit_2.date().toString("yyyy-MM-dd")
+         cloud_start = str(self.lsat8dlg.horizontalSlider.lowerValue)
+         cloud_end = str(self.lsat8dlg.horizontalSlider.upperValue)
+         data = landsat8_util.search(type,date_start,date_end,cloud_start,cloud_end,path_start,path_end,row_start,row_end)
+         # output sorted 'id' by 'date'
+         dd = {}
+         for d in data:
+             dd[d['id']]=d['date']
+         sorted_data = [[key,value] for key, value in sorted(dd.items(),key=lambda x:x[1],reverse=False)]
+
+         groupLayerID = self.iface.legendInterface().addGroup("landsat8wms[path:" + self.path + " row:" + self.row + "]")
+         wmslayers=[]
+         for d in sorted_data:
+            wmslayer = self.iface.addRasterLayer("crs=EPSG:4326&dpiMode=7&featureCount=10&format=image/png&layers=PANSHARPENED&styles=&url=http://ows.geogrid.org/land8wms/" + d[0] + "?",d[0] +"("+ d[1]+")", "wms")
+            wmslayers.append(wmslayer)
+            self.iface.legendInterface().moveLayer(wmslayer, groupLayerID)
+         
+         return wmslayers
+     
+    def getWCS(self):      
+         path_start = self.path
+         path_end = self.path
+         row_start = self.row
+         row_end = self.row
+         type = "fine"
+         date_start = self.lsat8dlg.dateEdit.date().toString("yyyy-MM-dd")
+         date_end = self.lsat8dlg.dateEdit_2.date().toString("yyyy-MM-dd")
+         cloud_start = str(self.lsat8dlg.horizontalSlider.lowerValue)
+         cloud_end = str(self.lsat8dlg.horizontalSlider.upperValue)
+         data = landsat8_util.search(type,date_start,date_end,cloud_start,cloud_end,path_start,path_end,row_start,row_end)
+         # output sorted 'id' by 'date'. and wcs use only most fine date.
+
+         for d in data:
+             if d['use']=='yes':
+                dd=d
+
+         groupLayerID = self.iface.legendInterface().addGroup("landsat8wcs[path:" + self.path + " row:" + self.row + " date:"+ dd['date'] + " id:" + dd['id'] +"]")
+         
+         for band in ["BANDQA","PANSHARPENED","BAND1","BAND2","BAND3","BAND4","BAND5","BAND6","BAND7","BAND8","BAND9"]:
+            wcslayer = self.iface.addRasterLayer("cache=PreferNetwork&crs=&format=GTiff&identifier="+ band + "&url=http://ows.geogrid.org/land8wcs/" + dd['id'],band, "wcs")
+            self.iface.legendInterface().moveLayer(wcslayer, groupLayerID)
+
+
+# This is joke but no use. 
+#    def time_goes_by(self):
+#         legend = self.iface.legendInterface().setLayerVisible(self.arealayer, False)
+#         wmslayers = self.getWMS()
+#         #self.iface.mapCanvas().setExtent(wmslayers[0].extent())
+#         global g
+#         g = TimeGoesBy(self,wmslayers)
+#         g.runanim()
+#         web = QWebView(self.iface.mapCanvas())
+#         web.setGeometry(QRect(0,0,256,256))
+#         web.settings().setAttribute(QWebSettings.PluginsEnabled, True)
+#         web.load(QUrl("http://www.youtube.com/v/nKIu9yen5nc"))
+#         web.show()
+         

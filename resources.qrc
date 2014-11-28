@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="icon images">
+    <file>cloud.png</file>
+    <file>sun.png</file>
+  </qresource>
+</RCC>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<csw:GetRecords xmlns:csw="http://www.opengis.net/cat/csw/2.0.2"  service="CSW" version="2.0.2" resultType="results" outputSchema="ebrim" outputFormat="text/xml" startPosition="1" maxRecords="10000">
+<csw:DistributedSearch hopCount="0"/>
+  <csw:Query typeNames="csw:GetRecord">
+    <csw:Constraint version="1.0.0">
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+        <ogc:And>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>instrumentShortName</ogc:PropertyName>
+            <ogc:Literal>landsat8</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+
+          <ogc:PropertyIsGreaterThanOrEqualTo>
+            <ogc:PropertyName>beginPosition</ogc:PropertyName>
+            <ogc:Literal>date_start</ogc:Literal>
+          </ogc:PropertyIsGreaterThanOrEqualTo>
+                                                     
+          <ogc:PropertyIsLessThan>
+            <ogc:PropertyName>endPosition</ogc:PropertyName>
+            <ogc:Literal>date_end</ogc:Literal>
+          </ogc:PropertyIsLessThan>
+          
+          <ogc:PropertyIsGreaterThanOrEqualTo>
+            <ogc:PropertyName>wrsLongitudeGrid</ogc:PropertyName>
+            <ogc:Literal>path_start</ogc:Literal>
+          </ogc:PropertyIsGreaterThanOrEqualTo>
+          <ogc:PropertyIsLessThanOrEqualTo>
+            <ogc:PropertyName>wrsLongitudeGrid</ogc:PropertyName>
+            <ogc:Literal>path_end</ogc:Literal>
+          </ogc:PropertyIsLessThanOrEqualTo>
+          
+          <ogc:PropertyIsGreaterThanOrEqualTo>
+            <ogc:PropertyName>wrsLatitudeGrid</ogc:PropertyName>
+            <ogc:Literal>row_start</ogc:Literal>
+          </ogc:PropertyIsGreaterThanOrEqualTo>
+          <ogc:PropertyIsLessThanOrEqualTo>
+            <ogc:PropertyName>wrsLatitudeGrid</ogc:PropertyName>
+            <ogc:Literal>row_end</ogc:Literal>
+          </ogc:PropertyIsLessThanOrEqualTo>
+          
+
+          <ogc:PropertyIsGreaterThanOrEqualTo>
+            <ogc:PropertyName>cloudCoverPercentage</ogc:PropertyName>
+            <ogc:Literal>cloud_start</ogc:Literal>
+          </ogc:PropertyIsGreaterThanOrEqualTo>
+                                  
+          <ogc:PropertyIsLessThan>
+            <ogc:PropertyName>cloudCoverPercentage</ogc:PropertyName>
+            <ogc:Literal>cloud_end</ogc:Literal>
+          </ogc:PropertyIsLessThan>
+
+          <ogc:Or>
+            <ogc:PropertyIsLike>
+              <ogc:PropertyName>identifier</ogc:PropertyName>
+              <ogc:Literal>lc8*</ogc:Literal>
+            </ogc:PropertyIsLike>
+                                                             
+            <ogc:PropertyIsLike>
+              <ogc:PropertyName>sensorOperationalMode</ogc:PropertyName>
+              <ogc:Literal>oli</ogc:Literal>
+            </ogc:PropertyIsLike>
+          </ogc:Or>
+                                                                         
+        </ogc:And>
+      </ogc:Filter>
+    </csw:Constraint>
+  </csw:Query>
+</csw:GetRecords>
