@@ -30,7 +30,7 @@ class MPCreditType(QgsPluginLayerType):
     self.plugin = plugin
 
   def createLayer(self):
-    return MPCredit(self.plugin,"","")
+    return MPCredit(self.plugin,"","","")
 
   def showLayerProperties(self, layer):
     layer.updateText()
@@ -42,8 +42,8 @@ class MPCredit(QgsPluginLayer):
 
   LAYER_TYPE="MPCredit"
 
-  def __init__(self,plugin,qgisepsg,credit):
-     QgsPluginLayer.__init__(self, MPCredit.LAYER_TYPE, "credit")
+  def __init__(self,plugin,qgisepsg,layername,credit):
+     QgsPluginLayer.__init__(self, MPCredit.LAYER_TYPE, layername + "_credit")
      self.plugin=plugin
      self.credit=credit
      self.setCustomProperty("credit", credit)
@@ -54,8 +54,42 @@ class MPCredit(QgsPluginLayer):
      self.setValid(True)
      QObject.connect(self, SIGNAL("showBarMessage(QString, QString, int, int)"), self.showBarMessageSlot)
 
-  def draw(self, rendererContext):
+     #animation
+     self.posX = 139.748806
+     self.posY = 35.648167
+     self._state = 0
+     period_time = 500
+     steps = 2
+     duration = steps * period_time
+     self.anim = QPropertyAnimation(self, "state")
+     self.anim.setStartValue(0)
+     self.anim.setEndValue(steps)
+     self.anim.setDuration(duration)
+     self.anim.setLoopCount(-1)
+     self.anim.valueChanged.connect(self.value_changed)
+     self.plugin.iface.mapCanvas().renderComplete.connect(self.after_render)
+     self.plugin.iface.mapCanvas().renderStarting.connect(self.anim.pause)
+     self.anim.start()
+     
+  def after_render(self):
+     if self.santa:
+        self.anim.resume()
 
+  def value_changed(self,value):
+     self.posX = self.posX + 0.0001
+     self.posY = self.posY + 0.0001
+     self.triggerRepaint()
+
+  @pyqtProperty(int)
+  def state(self):
+        return self._state
+
+  @state.setter
+  def state(self, value):
+        self._state = value
+
+  def draw(self, rendererContext):
+      
       painter = rendererContext.painter()
       extent = rendererContext.extent()
       mapToPixel = rendererContext.mapToPixel()
@@ -79,16 +113,18 @@ class MPCredit(QgsPluginLayer):
       
 
       ### joke
-      p = QgsPoint(139.748806, 35.648167)
+      p = QgsPoint(self.posX, self.posY)
       extent = QgsGeometry.fromWkt(self.plugin.iface.mapCanvas().extent().asWktPolygon()) 
       extent.transform(QgsCoordinateTransform(self.plugin.iface.mapCanvas().mapSettings().destinationCrs(),QgsCoordinateReferenceSystem(4326)))
-      if self.plugin.iface.mapCanvas().scale() < 50000:
-         if (extent.boundingBox().xMinimum() < p.x() < extent.boundingBox().xMaximum()) and (extent.boundingBox().yMinimum() < p.y() < extent.boundingBox().yMaximum()):
+      if self.plugin.iface.mapCanvas().scale() < 50000 and (extent.boundingBox().xMinimum() < p.x() < extent.boundingBox().xMaximum()) and (extent.boundingBox().yMinimum() < p.y() < extent.boundingBox().yMaximum()):
+           self.santa = True
            px = -32 + painter.viewport().width() * (p.x()-extent.boundingBox().xMinimum())/(extent.boundingBox().xMaximum()-extent.boundingBox().xMinimum())
-           py = -64 + painter.viewport().height() - painter.viewport().height() * (p.y()-extent.boundingBox().yMinimum())/(extent.boundingBox().yMaximum()-extent.boundingBox().yMinimum())
-         
+           py = -64 + painter.viewport().height() - painter.viewport().height() * (p.y()-extent.boundingBox().yMinimum())/(extent.boundingBox().yMaximum()-extent.boundingBox().yMinimum())         
            painter.drawImage(px, py, QImage(self.plugin.pathPlugin + os.sep + "santa.png"))
-    
+           #self.showBarMessage("Debug:", QgsMessageBar.INFO,1,str(self.posX))
+      else:
+           self.santa = False
+
       painter.restore()
 
       if self.plugin.iface.mapCanvas().scale() > 10000000:
@@ -96,6 +132,8 @@ class MPCredit(QgsPluginLayer):
       
 
       return True
+
+
 
   def updateText(self):
       text, ok = QInputDialog.getText(None, 'Input Dialog', 'Enter credit:',0,self.credit)
@@ -217,6 +255,7 @@ class MapProxyPlugin:
         mapproxy_execute.kill()
 
     def addLayer(self, layerType):
+        
         QMessageBox.information(None, "Information:",layerType.access_constraints)
         
         #if possible, set mapproxy service epsg to qgis project epsg
@@ -231,8 +270,7 @@ class MapProxyPlugin:
         self.iface.addRasterLayer(
             "crs=" + epsg + "&layers=" + layerType.name + "&styles=&format=image/png&url=http://localhost:8080/" + layerType.base + "/service?",
             layerType.name, "wms")
-
-        credit = MPCredit(self,qgisepsg,layerType.credit)
+        credit = MPCredit(self,qgisepsg,layerType.name,layerType.credit)
         QgsMapLayerRegistry.instance().addMapLayer(credit)
         self.layers[credit.id()]=credit
 
@@ -310,7 +348,7 @@ class MapProxyPlugin:
                                                                                       "<a href='file:///" + projectdir + "'>" + projectdir + "</a></p>"))
 
     def landsat8getdata(self):
-        self.arealayer = self.iface.addVectorLayer(self.pathPlugin + os.sep + 'landsat8area.shp','LANDSAT AREA','ogr')
+        self.arealayer = self.iface.addVectorLayer(self.pathPlugin + os.sep + 'shp' + os.sep + 'landsat8area.shp','LANDSAT8 AREA','ogr')
         QMessageBox.information(None, "Usage", "Information Toolbar-->Select Area --> Run 'Action' (Landsat8 GetData)")
 
 
@@ -321,11 +359,11 @@ class MapProxyPlugin:
            icon = QIcon()
            icon.addPixmap(QPixmap(_fromUtf8(":/icon images/sun.png")), QIcon.Normal, QIcon.Off)
            self.lsat8dlg.pushButton.setIcon(icon)
-           self.lsat8dlg.pushButton.setText("I'm feeling fine")
+           self.lsat8dlg.pushButton.setText("I'm Feeling Lucky")
            icon = QIcon()
            icon.addPixmap(QPixmap(_fromUtf8(":/icon images/cloud.png")), QIcon.Normal, QIcon.Off)
            self.lsat8dlg.pushButton_2.setIcon(icon)
-           self.lsat8dlg.pushButton_2.setText("I'm feeling cloudy")
+           self.lsat8dlg.pushButton_2.setText("I'm Feeling Unlucky")
 
 
            self.lsat8dlg.pushButton.clicked.connect(self.feeling_fine)
@@ -435,9 +473,11 @@ class MapProxyPlugin:
 
          groupLayerID = self.iface.legendInterface().addGroup("landsat8wcs[path:" + self.path + " row:" + self.row + " date:"+ dd['date'] + " id:" + dd['id'] +"]")
          
-         for band in ["BANDQA","PANSHARPENED","BAND1","BAND2","BAND3","BAND4","BAND5","BAND6","BAND7","BAND8","BAND9"]:
-            wcslayer = self.iface.addRasterLayer("cache=PreferNetwork&crs=&format=GTiff&identifier="+ band + "&url=http://ows.geogrid.org/land8wcs/" + dd['id'],band, "wcs")
-            self.iface.legendInterface().moveLayer(wcslayer, groupLayerID)
+         for band in ["BANDQA","PANSHARPENED","BAND1","BAND2","BAND3","BAND4","BAND5","BAND6","BAND7","BAND8","BAND9","BAND10","BAND11"]:
+              wcslayer = QgsRasterLayer("cache=PreferNetwork&crs=&format=GTiff&identifier="+ band + "&url=http://ows.geogrid.org/land8wcs/" + dd['id'],band, "wcs")
+              if wcslayer.isValid():
+                 QgsMapLayerRegistry.instance().addMapLayer(wcslayer)
+                 self.iface.legendInterface().moveLayer(wcslayer, groupLayerID)
 
 
 # This is joke but no use. 

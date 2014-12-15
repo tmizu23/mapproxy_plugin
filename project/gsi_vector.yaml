@@ -1,0 +1,74 @@
+services:
+  demo:
+  wmts:
+  wms:
+   srs: ['EPSG:3857','EPSG:4326','EPSG:4612']
+   image_formats: ['image/png']
+   md:
+      title: 地理院ベクトルタイル
+      abstract: "国土地理院"
+      online_resource: http://map.ecoris.info
+      access_constraints:
+            ・国土地理院のベクトルタイル提供実験データを使用しています。<br />
+            ・詳細は以下サイトのREADMEを参考ください。<br />
+           <a href="https://github.com/gsi-cyberjapan">https://github.com/gsi-cyberjapan</a>
+layers:
+  - name: experimental_rdcl
+    title: 道路中心線
+    sources: [experimental_rdcl]
+  - name: experimental_fgd
+    title: 基盤地図情報
+    sources: [experimental_fgd]
+caches:
+  experimental_rdcl:
+    grids: [web]
+    sources: [experimental_rdcl]
+  experimental_fgd:
+    grids: [web]
+    sources: [experimental_fgd]
+sources:
+  experimental_rdcl:
+    type: geojson
+    grid: web
+    url: http://cyberjapandata.gsi.go.jp/xyz/experimental_rdcl/%(tms_path)s.geojson
+    style: rdcl.xml
+    min_res: 19.109257071294063
+    max_res: 1.194328566955879
+    coverage:
+      bbox: [139.986648, 36.0, 140.176162, 36.239501]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  experimental_fgd:
+    type: geojson
+    grid: web
+    url: http://cyberjapandata.gsi.go.jp/xyz/experimental_fgd/%(tms_path)s.geojson
+    min_res: 1.194328566955879
+    max_res: 0.29858214173896974
+    coverage:
+      bbox: [139.986648, 36.0, 140.176162, 36.239501]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+grids:
+  web:
+    base: GLOBAL_WEBMERCATOR
+

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[]>
+<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over" background-color="#001420">
+<Style name="rdcl" filter-mode="first" >
+  <Rule>
+    <Filter>([rdCtg] = 'その他') and ([rnkWidth] = '3m未満')</Filter>
+    <LineSymbolizer stroke="#225160" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rdCtg] = 'その他') and ([rnkWidth] = '3m-5.5m未満')</Filter>
+    <LineSymbolizer stroke="#225160" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rdCtg] = 'その他') and ([rnkWidth] = '5.5m-13m未満')</Filter>
+    <LineSymbolizer stroke="#225160" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rdCtg] = 'その他') and ([rnkWidth] = '13m-19.5m未満')</Filter>
+    <LineSymbolizer stroke="#225160" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rdCtg] = 'その他') and ([rnkWidth] = '19.5m以上')</Filter>
+    <LineSymbolizer stroke="#225160" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rdCtg] = 'その他')</Filter>
+    <LineSymbolizer stroke="#225160" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '3m未満') and ([rdCtg] = '市区町村道等')</Filter>
+    <LineSymbolizer stroke-width="1" stroke="#225160" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '3m未満') and ([rdCtg] = '都道府県道')</Filter>
+    <LineSymbolizer stroke-width="1" stroke="#00aaff" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '3m未満') and ([rdCtg] = '国道')</Filter>
+    <LineSymbolizer stroke-width="1" stroke="#00aaff" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '3m未満') and ([rdCtg] = '高速自動車国道等')</Filter>
+    <LineSymbolizer stroke-width="1" stroke="#99ff66" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '3m未満')</Filter>
+    <LineSymbolizer stroke-width="1" stroke="#225160" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '3m-5.5m未満') and ([rdCtg] = '市区町村道等')</Filter>
+    <LineSymbolizer stroke-width="3" stroke="#225160" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '3m-5.5m未満') and ([rdCtg] = '都道府県道')</Filter>
+    <LineSymbolizer stroke-width="3" stroke="#00aaff" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '3m-5.5m未満') and ([rdCtg] = '国道')</Filter>
+    <LineSymbolizer stroke-width="3" stroke="#00aaff" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '3m-5.5m未満') and ([rdCtg] = '高速自動車国道等')</Filter>
+    <LineSymbolizer stroke-width="3" stroke="#99ff66" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '3m-5.5m未満')</Filter>
+    <LineSymbolizer stroke-width="3" stroke="#225160" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '5.5m-13m未満') and ([rdCtg] = '市区町村道等')</Filter>
+    <LineSymbolizer stroke-width="5" stroke="#225160" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '5.5m-13m未満') and ([rdCtg] = '都道府県道')</Filter>
+    <LineSymbolizer stroke-width="5" stroke="#00aaff" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '5.5m-13m未満') and ([rdCtg] = '国道')</Filter>
+    <LineSymbolizer stroke-width="5" stroke="#00aaff" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '5.5m-13m未満') and ([rdCtg] = '高速自動車国道等')</Filter>
+    <LineSymbolizer stroke-width="5" stroke="#99ff66" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '5.5m-13m未満')</Filter>
+    <LineSymbolizer stroke-width="5" stroke="#225160" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '13m-19.5m未満') and ([rdCtg] = '市区町村道等')</Filter>
+    <LineSymbolizer stroke-width="7" stroke="#225160" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '13m-19.5m未満') and ([rdCtg] = '都道府県道')</Filter>
+    <LineSymbolizer stroke-width="7" stroke="#00aaff" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '13m-19.5m未満') and ([rdCtg] = '国道')</Filter>
+    <LineSymbolizer stroke-width="7" stroke="#00aaff" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '13m-19.5m未満') and ([rdCtg] = '高速自動車国道等')</Filter>
+    <LineSymbolizer stroke-width="7" stroke="#99ff66" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '13m-19.5m未満')</Filter>
+    <LineSymbolizer stroke-width="7" stroke="#225160" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '19.5m以上') and ([rdCtg] = '市区町村道等')</Filter>
+    <LineSymbolizer stroke-width="9" stroke="#225160" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '19.5m以上') and ([rdCtg] = '都道府県道')</Filter>
+    <LineSymbolizer stroke-width="9" stroke="#00aaff" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '19.5m以上') and ([rdCtg] = '国道')</Filter>
+    <LineSymbolizer stroke-width="9" stroke="#00aaff" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '19.5m以上') and ([rdCtg] = '高速自動車国道等')</Filter>
+    <LineSymbolizer stroke-width="9" stroke="#99ff66" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rnkWidth] = '19.5m以上')</Filter>
+    <LineSymbolizer stroke-width="9" stroke="#225160" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rdCtg] = '市区町村道等')</Filter>
+    <LineSymbolizer stroke="#225160" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rdCtg] = '都道府県道')</Filter>
+    <LineSymbolizer stroke="#00aaff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rdCtg] = '国道')</Filter>
+    <LineSymbolizer stroke="#00aaff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <Filter>([rdCtg] = '高速自動車国道等')</Filter>
+    <LineSymbolizer stroke="#99ff66" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <LineSymbolizer stroke-width="1" stroke="#225160" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+</Style>
+</Map>

@@ -1,0 +1,98 @@
+services:
+  demo:
+  wmts:
+  wms:
+   srs: ['EPSG:3857','EPSG:4326','EPSG:4612']
+   image_formats: ['image/png']
+   md:
+      title: OpenStreetMap vector
+      abstract: Mapzen Vector Tile Service
+      online_resource: http://map.ecoris.info
+      access_constraints:
+            ・Mapzen Vector Tile Service<br />
+            ・<a href="https://github.com/mapzen/vector-datasource/wiki/Mapzen-Vector-Tile-Service">Site</a><br />
+layers:
+  - name: osm_roads
+    title: OSM_roads
+    sources: [roads]
+  - name: osm_buildings
+    title: OSM_buildings
+    sources: [buildings]
+  - name: osm_earth
+    title: OSM_earth
+    sources: [earth]
+
+caches:
+  roads:
+    grids: [web]
+    sources: [roads]
+  buildings:
+    grids: [web]
+    sources: [buildings]
+  earth:
+    grids: [web]
+    sources: [earth]
+
+sources:
+  roads:
+    type: geojson
+    grid: web
+    url: http://vector.mapzen.com/osm/roads/%(tms_path)s.json
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    min_res: 4891.96981025128
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  buildings:
+    type: geojson
+    grid: web
+    url: http://vector.mapzen.com/osm/buildings/%(tms_path)s.json
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    min_res: 4891.96981025128
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  earth:
+    type: geojson
+    grid: web
+    url: http://vector.mapzen.com/osm/earth/%(tms_path)s.json
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    min_res: 4891.96981025128
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+
+grids:
+  web:
+    base: GLOBAL_WEBMERCATOR
+
