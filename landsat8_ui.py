@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'landsat8.ui'
 #
-# Created: Wed Nov 26 15:03:37 2014
+# Created: Tue Dec 16 20:34:04 2014
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,12 @@ except AttributeError:
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName(_fromUtf8("Dialog"))
-        Dialog.resize(338, 203)
+        Dialog.resize(344, 201)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
+        Dialog.setSizePolicy(sizePolicy)
         self.horizontalSlider = QxtSpanSlider(Dialog)
         self.horizontalSlider.setGeometry(QtCore.QRect(30, 80, 281, 19))
         self.horizontalSlider.setRange(0, 100)
@@ -34,7 +39,7 @@ class Ui_Dialog(object):
         self.dateEdit_2.setDate(QtCore.QDate(2014, 12, 31))
         self.dateEdit_2.setObjectName(_fromUtf8("dateEdit_2"))
         self.pushButton = QtGui.QPushButton(Dialog)
-        self.pushButton.setGeometry(QtCore.QRect(20, 140, 151, 41))
+        self.pushButton.setGeometry(QtCore.QRect(10, 140, 161, 41))
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -44,14 +49,14 @@ class Ui_Dialog(object):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/icon images/sun.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton.setIcon(icon)
-        self.pushButton.setIconSize(QtCore.QSize(24, 24))
+        self.pushButton.setIconSize(QtCore.QSize(18, 18))
         self.pushButton.setObjectName(_fromUtf8("pushButton"))
         self.pushButton_2 = QtGui.QPushButton(Dialog)
-        self.pushButton_2.setGeometry(QtCore.QRect(170, 140, 151, 41))
+        self.pushButton_2.setGeometry(QtCore.QRect(170, 140, 161, 41))
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(_fromUtf8(":/icon images/cloud.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_2.setIcon(icon1)
-        self.pushButton_2.setIconSize(QtCore.QSize(24, 24))
+        self.pushButton_2.setIconSize(QtCore.QSize(18, 18))
         self.pushButton_2.setObjectName(_fromUtf8("pushButton_2"))
         self.label = QtGui.QLabel(Dialog)
         self.label.setGeometry(QtCore.QRect(20, 10, 41, 21))
@@ -75,8 +80,8 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QtGui.QApplication.translate("Dialog", "Landsat8 Generator", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton.setText(QtGui.QApplication.translate("Dialog", "  I\'m feeling fine", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton_2.setText(QtGui.QApplication.translate("Dialog", "  I\'m feeling cloudy", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButton.setText(QtGui.QApplication.translate("Dialog", "  I\'m Feeling Lucky", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButton_2.setText(QtGui.QApplication.translate("Dialog", "  I\'m Feeling Unlucky", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("Dialog", "Date :", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("Dialog", "Cloud :", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setText(QtGui.QApplication.translate("Dialog", "-", None, QtGui.QApplication.UnicodeUTF8))

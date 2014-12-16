@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>338</width>
-    <height>203</height>
+    <width>344</width>
+    <height>201</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Landsat8 Generator</string>
@@ -69,9 +75,9 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>10</x>
      <y>140</y>
-     <width>151</width>
+     <width>161</width>
      <height>41</height>
     </rect>
    </property>
@@ -85,7 +91,7 @@
     <enum>Qt::LeftToRight</enum>
    </property>
    <property name="text">
-    <string>  I'm feeling fine</string>
+    <string>  I'm Feeling Lucky</string>
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
@@ -93,8 +99,8 @@
    </property>
    <property name="iconSize">
     <size>
-     <width>32</width>
-     <height>32</height>
+     <width>18</width>
+     <height>18</height>
     </size>
    </property>
   </widget>
@@ -103,12 +109,12 @@
     <rect>
      <x>170</x>
      <y>140</y>
-     <width>151</width>
+     <width>161</width>
      <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string>  I'm feeling cloudy</string>
+    <string>  I'm Feeling Unlucky</string>
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
@@ -116,8 +122,8 @@
    </property>
    <property name="iconSize">
     <size>
-     <width>32</width>
-     <height>32</height>
+     <width>18</width>
+     <height>18</height>
     </size>
    </property>
   </widget>

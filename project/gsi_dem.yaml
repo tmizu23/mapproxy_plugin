@@ -5,16 +5,16 @@ services:
    srs: ['EPSG:3857','EPSG:4326','EPSG:4612']
    image_formats: ['image/png']
    md:
-      title: OpenStreetMap vector
-      abstract: Mapzen Vector Tile Service
-      online_resource: http://map.ecoris.info
+      title: 地理院タイル
+      abstract: "国土地理院"
+      online_resource: http://portal.cyberjapan.jp/
       access_constraints:
             ・地理院タイル（標高）を使用しています。<br />
             ・地理院タイル<a href="http://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html">利用規約をお読みください。</a><br />
             ・うまく表示されない場合は、以下のパスを正しく設定してください。<br />
              .qgis2\python\plugins\mapproxy_plugin\bin\run.bat(macの場合はrun.sh)
 layers:
-  - name: gsi_dem
+  - name: gsi_dem_oppai
     title: 標高タイル
     sources: [gsi_dem]
 caches:
@@ -25,7 +25,6 @@ sources:
   gsi_dem:
     type: geojson
     grid: web
-    format: txt
     url: http://cyberjapandata.gsi.go.jp/xyz/dem/%(tms_path)s.txt
     coverage:
       bbox: [122.9, 20.4, 154.0, 45.6]

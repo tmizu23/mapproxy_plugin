@@ -7,7 +7,7 @@ services:
    md:
       title: 地理院ベクトルタイル
       abstract: "国土地理院"
-      online_resource: http://map.ecoris.info
+      online_resource: https://github.com/gsi-cyberjapan
       access_constraints:
             ・国土地理院のベクトルタイル提供実験データを使用しています。<br />
             ・詳細は以下サイトのREADMEを参考ください。<br />
@@ -52,6 +52,7 @@ sources:
     type: geojson
     grid: web
     url: http://cyberjapandata.gsi.go.jp/xyz/experimental_fgd/%(tms_path)s.geojson
+    style: fgd.xml
     min_res: 1.194328566955879
     max_res: 0.29858214173896974
     coverage:

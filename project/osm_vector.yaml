@@ -38,6 +38,7 @@ sources:
     type: geojson
     grid: web
     url: http://vector.mapzen.com/osm/roads/%(tms_path)s.json
+    style: default.xml
     coverage:
       bbox: [122.9, 20.4, 154.0, 45.6]
       srs: 'EPSG:4326'
