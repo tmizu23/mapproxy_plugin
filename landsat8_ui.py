@@ -17,12 +17,13 @@ except AttributeError:
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName(_fromUtf8("Dialog"))
-        Dialog.resize(344, 201)
+        #Dialog.resize(344, 201)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
         Dialog.setSizePolicy(sizePolicy)
+        Dialog.setFixedSize(346, 200)
         self.horizontalSlider = QxtSpanSlider(Dialog)
         self.horizontalSlider.setGeometry(QtCore.QRect(30, 80, 281, 19))
         self.horizontalSlider.setRange(0, 100)

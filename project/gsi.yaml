@@ -60,22 +60,22 @@ caches:
     sources: [gsi_std-6,gsi_blank]
   gsi_english:
     grids: [web]
-    sources: [gsi_std-6,gsi_english,gsi_std-4,gsi_std-3,gsi_std-2,gsi_std-1]
+    sources: [gsi_std-6,gsi_english,gsi_std-3,gsi_std-2,gsi_std-1]
   gsi_ort:
     grids: [web]
     sources: [gsi_std-6,gsi_std-5,gsi_std-4,gsi_std-3,gsi_ort,gsi_std-1]
   gsi_gazo1:
     grids: [web]
-    sources: [gsi_std-6,gsi_std-5,gsi_std-4,gsi_std-3,gsi_gazo1,gsi_std-1]
+    sources: [gsi_gazo1area,gsi_gazo1]
   gsi_gazo2:
     grids: [web]
-    sources: [gsi_std-6,gsi_std-5,gsi_std-4,gsi_std-3,gsi_gazo2,gsi_std-1]
+    sources: [gsi_gazo2area,gsi_gazo2]
   gsi_gazo3:
     grids: [web]
-    sources: [gsi_std-6,gsi_std-5,gsi_std-4,gsi_std-3,gsi_gazo3,gsi_std-1]
+    sources: [gsi_gazo3area,gsi_gazo3]
   gsi_gazo4:
     grids: [web]
-    sources: [gsi_std-6,gsi_std-5,gsi_std-4,gsi_std-3,gsi_gazo4,gsi_std-1]
+    sources: [gsi_gazo4area,gsi_gazo4]
   gsi_airphoto:
     grids: [web]
     sources: [gsi_std-6,gsi_airphoto]
@@ -143,7 +143,7 @@ sources:
     grid: web
     url: http://cyberjapandata.gsi.go.jp/xyz/english/%(tms_path)s.png
     min_res: 4891.96981025128
-    max_res: 305.748113140705
+    max_res: 38.21851414258813
     coverage:
       bbox: [122.9, 20.4, 154.0, 45.6]
       srs: 'EPSG:4326'
@@ -198,12 +198,52 @@ sources:
      other:
        response: '#000000'
        cache: False
+  gsi_gazo1area:
+    type: tile
+    grid: web
+    url: http://cyberjapandata.gsi.go.jp/xyz/gazo1area/%(tms_path)s.png
+    min_res: 4891.96981025128
+    max_res: 4.777314267823516
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
   gsi_gazo2:
     type: tile
     grid: web
     url: http://cyberjapandata.gsi.go.jp/xyz/gazo2/%(tms_path)s.jpg
     min_res: 4.777314267823516
     max_res: 0.5971642834779395
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  gsi_gazo2area:
+    type: tile
+    grid: web
+    url: http://cyberjapandata.gsi.go.jp/xyz/gazo2area/%(tms_path)s.png
+    min_res: 4891.96981025128
+    max_res: 4.777314267823516
     coverage:
       bbox: [122.9, 20.4, 154.0, 45.6]
       srs: 'EPSG:4326'
@@ -238,6 +278,26 @@ sources:
      other:
        response: '#000000'
        cache: False
+  gsi_gazo3area:
+    type: tile
+    grid: web
+    url: http://cyberjapandata.gsi.go.jp/xyz/gazo3area/%(tms_path)s.png
+    min_res: 4891.96981025128
+    max_res: 4.777314267823516
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
   gsi_gazo4:
     type: tile
     grid: web
@@ -258,12 +318,32 @@ sources:
      other:
        response: '#000000'
        cache: False
+  gsi_gazo4area:
+    type: tile
+    grid: web
+    url: http://cyberjapandata.gsi.go.jp/xyz/gazo4area/%(tms_path)s.png
+    min_res: 4891.96981025128
+    max_res: 4.777314267823516
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
   gsi_airphoto:
     type: tile
     grid: web
     url: http://cyberjapandata.gsi.go.jp/xyz/airphoto/%(tms_path)s.png
-    min_res: 4891.96981025128
-    max_res: 0.29858214173896974
+    #min_res: 4891.96981025128
+    #max_res: 0.29858214173896974
     coverage:
       bbox: [122.9, 20.4, 154.0, 45.6]
       srs: 'EPSG:4326'

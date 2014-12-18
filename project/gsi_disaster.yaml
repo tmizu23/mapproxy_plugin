@@ -23,28 +23,80 @@ layers:
   - name: gsi_tohoku2
     title: 東日本大震災被災地直後オルソ画像(2011年5月-2012年4月撮影)
     sources: [gsi_toho2]
-  - name: gsi_izuoshima2012
-    title: 台風26号の大雨(大島町)正射画像(2012年4月撮影)
-    sources: [gsi_izuoshima2012]
-  - name: gsi_izuoshima20131017
-    title: 台風26号の大雨(大島町)正射画像(2013年10月17日撮影)
-    sources: [gsi_izuoshima20131017]
+  - name: gsi_fukkokizu
+    title: 災害復興計画基図
+    sources: [gsi_fukkokizu]
 
 caches:
   gsi_toho1:
     grids: [web]
-    sources: [gsi_std-6,gsi_std-5,gsi_std-4,gsi_std2012-3,gsi_toho1,gsi_std2012-1]
+    sources: [gsi_std-6,gsi_std-5,gsi_std-4,gsi_std-3,gsi_toho1,gsi_std-1]
   gsi_toho2:
     grids: [web]
-    sources: [gsi_std-6,gsi_std-5,gsi_std-4,gsi_std2012-3,gsi_toho2]
-  gsi_izuoshima2012:
+    sources: [gsi_std-6,gsi_std-5,gsi_std-4,gsi_std-3,gsi_toho2]
+  gsi_fukkokizu:
     grids: [web]
-    sources: [gsi_izuoshima2012]
-  gsi_izuoshima20131017:
-    grids: [web]
-    sources: [gsi_izuoshima20131017]
+    sources: [gsi_fukkokizu]
 
 sources:
+  gsi_fukkokizu:
+    type: tile
+    grid: web
+    url: http://cyberjapandata.gsi.go.jp/xyz/fukkokizu/%(tms_path)s.png
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  gsi_toho1:
+    type: tile
+    grid: web
+    url: http://cyberjapandata.gsi.go.jp/xyz/toho1/%(tms_path)s.jpg
+    min_res: 4.777314267823516
+    max_res: 0.5971642834779395
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  gsi_toho2:
+    type: tile
+    grid: web
+    url: http://cyberjapandata.gsi.go.jp/xyz/toho2/%(tms_path)s.jpg
+    min_res: 4.777314267823516
+    max_res: 0.29858214173896974
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
   gsi_std:
     type: tile
     grid: web
@@ -222,31 +274,11 @@ sources:
      other:
        response: '#000000'
        cache: False
-  gsi_toho1:
+  gsi_airphoto:
     type: tile
     grid: web
-    url: http://cyberjapandata.gsi.go.jp/xyz/toho1/%(tms_path)s.jpg
-    min_res: 4.777314267823516
-    max_res: 0.5971642834779395
-    coverage:
-      bbox: [122.9, 20.4, 154.0, 45.6]
-      srs: 'EPSG:4326'
-    transparent: true
-    on_error:
-     204:
-       response: '#000000'
-       cache: True
-     502:
-       response: '#ede9e3'
-       cache: False
-     other:
-       response: '#000000'
-       cache: False
-  gsi_toho2:
-    type: tile
-    grid: web
-    url: http://cyberjapandata.gsi.go.jp/xyz/toho2/%(tms_path)s.jpg
-    min_res: 4.777314267823516
+    url: http://cyberjapandata.gsi.go.jp/xyz/airphoto/%(tms_path)s.png
+    min_res: 4891.96981025128
     max_res: 0.29858214173896974
     coverage:
       bbox: [122.9, 20.4, 154.0, 45.6]
@@ -262,50 +294,10 @@ sources:
      other:
        response: '#000000'
        cache: False
-  gsi_izuoshima20131017:
+  gsi_std-1:
     type: tile
     grid: web
-    url: http://cyberjapandata.gsi.go.jp/xyz/20131017dol/%(tms_path)s.png
-    min_res: 152.8740565703525
-    max_res: 0.29858214173896974
-    coverage:
-      bbox: [139.33, 34.6, 139.46, 34.8]
-      srs: 'EPSG:4326'
-    transparent: true
-    on_error:
-     204:
-       response: '#000000'
-       cache: True
-     502:
-       response: '#ede9e3'
-       cache: False
-     other:
-       response: '#000000'
-       cache: False
-  gsi_izuoshima2012:
-    type: tile
-    grid: web
-    url: http://geolib.gsi.go.jp/tiles/izuoshima/laserortho/%(z)s/%(x)s/%(x)s-%(y)s-%(z)s.png
-    min_res: 611.49622628141
-    max_res: 0.29858214173896974
-    coverage:
-      bbox: [139.33, 34.6, 139.46, 34.8]
-      srs: 'EPSG:4326'
-    transparent: true
-    on_error:
-     204:
-       response: '#000000'
-       cache: True
-     502:
-       response: '#ede9e3'
-       cache: False
-     other:
-       response: '#000000'
-       cache: False
-  gsi_std2012-1:
-    type: tile
-    grid: web
-    url: http://cyberjapandata.gsi.go.jp/xyz/std2012/%(tms_path)s.png
+    url: http://cyberjapandata.gsi.go.jp/xyz/std/%(tms_path)s.png
     min_res: 0.5971642834779395
     max_res: 0.29858214173896974
     coverage:
@@ -322,10 +314,10 @@ sources:
      other:
        response: '#000000'
        cache: False
-  gsi_std2012-2:
+  gsi_std-2:
     type: tile
     grid: web
-    url: http://cyberjapandata.gsi.go.jp/xyz/std2012/%(tms_path)s.png
+    url: http://cyberjapandata.gsi.go.jp/xyz/std/%(tms_path)s.png
     min_res: 4.777314267823516
     max_res: 0.5971642834779395
     coverage:
@@ -342,10 +334,10 @@ sources:
      other:
        response: '#000000'
        cache: False
-  gsi_std2012-3:
+  gsi_std-3:
     type: tile
     grid: web
-    url: http://cyberjapandata.gsi.go.jp/xyz/std2012/%(tms_path)s.png
+    url: http://cyberjapandata.gsi.go.jp/xyz/std/%(tms_path)s.png
     min_res: 38.21851414258813
     max_res: 4.777314267823516
     coverage:

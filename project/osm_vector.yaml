@@ -6,21 +6,28 @@ services:
    image_formats: ['image/png']
    md:
       title: OpenStreetMap vector
-      abstract: Mapzen Vector Tile Service
+      abstract: Mapzen Vector Tile Service, Map data (c) OpenStreetMap contributors
       online_resource: http://map.ecoris.info
       access_constraints:
-            ・Mapzen Vector Tile Service<br />
-            ・<a href="https://github.com/mapzen/vector-datasource/wiki/Mapzen-Vector-Tile-Service">Site</a><br />
+            ・Mapzen Vector Tile Serviceを通じてOpenStreetMapのデータを利用しています。<br />
+            ・Mapzen Vector Tile Serviceの<a href="https://github.com/mapzen/vector-datasource/wiki/Mapzen-Vector-Tile-Service">詳細</a>をお読みください。<br />
+            ・OpenStreetMapの<a href="http://wiki.openstreetmap.org/wiki/JA:Legal_FAQ">利用規約</a>をお読みください。<br />
 layers:
   - name: osm_roads
-    title: OSM_roads
+    title: OSM_roads(ベクトルタイル)
     sources: [roads]
   - name: osm_buildings
-    title: OSM_buildings
+    title: OSM_buildings(ベクトルタイル)
     sources: [buildings]
   - name: osm_earth
-    title: OSM_earth
+    title: OSM_earth(ベクトルタイル)
     sources: [earth]
+  - name: osm_pois
+    title: OSM_Points_of_Interest(ベクトルタイル)
+    sources: [pois]
+  - name: osm_places
+    title: OSM_places(ベクトルタイル)
+    sources: [places]
 
 caches:
   roads:
@@ -32,6 +39,12 @@ caches:
   earth:
     grids: [web]
     sources: [earth]
+  pois:
+    grids: [web]
+    sources: [pois]
+  places:
+    grids: [web]
+    sources: [places]
 
 sources:
   roads:
@@ -77,6 +90,45 @@ sources:
     type: geojson
     grid: web
     url: http://vector.mapzen.com/osm/earth/%(tms_path)s.json
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    min_res: 4891.96981025128
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  pois:
+    type: geojson
+    grid: web
+    url: http://vector.mapzen.com/osm/pois/%(tms_path)s.json
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    min_res: 4891.96981025128
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  places:
+    type: geojson
+    grid: web
+    url: http://vector.mapzen.com/osm/places/%(tms_path)s.json
+    style: osm_places.xml
     coverage:
       bbox: [122.9, 20.4, 154.0, 45.6]
       srs: 'EPSG:4326'

@@ -14,10 +14,10 @@ services:
            <a href="https://github.com/gsi-cyberjapan">https://github.com/gsi-cyberjapan</a>
 layers:
   - name: experimental_rdcl
-    title: 道路中心線
+    title: 道路中心線(ベクトルタイル)
     sources: [experimental_rdcl]
   - name: experimental_fgd
-    title: 基盤地図情報
+    title: 基盤地図情報(ベクトルタイル)
     sources: [experimental_fgd]
 caches:
   experimental_rdcl:
@@ -32,8 +32,8 @@ sources:
     grid: web
     url: http://cyberjapandata.gsi.go.jp/xyz/experimental_rdcl/%(tms_path)s.geojson
     style: rdcl.xml
-    min_res: 19.109257071294063
-    max_res: 1.194328566955879
+    #min_res: 19.109257071294063
+    #max_res: 1.194328566955879
     coverage:
       bbox: [139.986648, 36.0, 140.176162, 36.239501]
       srs: 'EPSG:4326'
@@ -53,8 +53,8 @@ sources:
     grid: web
     url: http://cyberjapandata.gsi.go.jp/xyz/experimental_fgd/%(tms_path)s.geojson
     style: fgd.xml
-    min_res: 1.194328566955879
-    max_res: 0.29858214173896974
+    #min_res: 1.194328566955879
+    #max_res: 0.29858214173896974
     coverage:
       bbox: [139.986648, 36.0, 140.176162, 36.239501]
       srs: 'EPSG:4326'
