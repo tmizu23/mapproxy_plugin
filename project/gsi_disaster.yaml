@@ -40,9 +40,10 @@ caches:
 
 sources:
   gsi_fukkokizu:
-    type: tile
+    type: geojson
     grid: web
     url: http://cyberjapandata.gsi.go.jp/xyz/fukkokizu/%(tms_path)s.png
+    extzoom: [18,18,17,19]
     coverage:
       bbox: [122.9, 20.4, 154.0, 45.6]
       srs: 'EPSG:4326'

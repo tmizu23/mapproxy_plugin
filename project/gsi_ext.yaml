@@ -1,0 +1,52 @@
+services:
+  demo:
+  wmts:
+  wms:
+   srs: ['EPSG:3857','EPSG:4326','EPSG:4612']
+   image_formats: ['image/png', 'image/jpeg']
+   #attribution:
+   #   text: "Geospatial Information Authority of Japan"
+   md:
+      title: 地理院タイル
+      abstract: "国土地理院"
+      online_resource: http://portal.cyberjapan.jp/
+      access_constraints:
+            ・地理院タイル一覧を参照の上、基本測量成果について必要な場合には測量法第29条及び第30条による承認の申請を行ってください。<br />
+            ・著作権法第30条における私的使用に相当する範囲を越える利用に際しては出所の明示を行ってください。<br />
+            ・その他、以下サイトの利用規約に従う必要があります。<br />
+           <a href="http://portal.cyberjapan.jp/help/termsofuse.html">http://portal.cyberjapan.jp/help/termsofuse.html</a>
+
+layers:
+  - name: gsi_std
+    title: 地理院標準地図(ズームレベル拡張)
+    sources: [gsi_std_ext]
+
+caches:
+  gsi_std_ext:
+    grids: [web]
+    sources: [gsi_std_ext]
+
+sources:
+  gsi_std_ext:
+    type: geojson
+    grid: web
+    url: http://cyberjapandata.gsi.go.jp/xyz/std/%(tms_path)s.png
+    extzoom: [15,17,14,19]
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+grids:
+  web:
+    base: GLOBAL_WEBMERCATOR
+globals:

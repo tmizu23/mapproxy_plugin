@@ -7,10 +7,12 @@ from qgis.gui import QgsMessageBar
 from qgis.core import *
 from landsat8_dialog import landsat8Dialog
 from time_goes_by import *
+import random
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/bin')
 import mapproxy_execute
 import landsat8_util
+
 
 translator = QTranslator()
 translator.load(
@@ -54,16 +56,9 @@ class MPCredit(QgsPluginLayer):
      self.setValid(True)
      QObject.connect(self, SIGNAL("showBarMessage(QString, QString, int, int)"), self.showBarMessageSlot)
      #animation
-     self.roadLayer = None
-     for i in self.plugin.iface.mapCanvas().scene().items():
-        if "QgsMapCanvasMap" in str(i.type):
-           self.canvasMap = i
-
      self.santa = False
-     self.posX = 140.05 #139.748806
-     self.posY = 36.12 #35.648167
-     self.px = 300
-     self.py = 300
+     self.posX = 139.748806
+     self.posY = 35.648167
      self._state = 0
      period_time = 500
      steps = 2
@@ -83,23 +78,10 @@ class MPCredit(QgsPluginLayer):
         self.anim.resume()
 
   def value_changed(self,value):
-     c = QColor(self.canvasMap.contentImage().pixel(self.px-32,self.py-64)).getRgb()
-     self.showBarMessage("Debug:", QgsMessageBar.INFO,1,str(c))
-     new_px = self.px + 0
-     new_py = self.py + 1
-     for dx,dy in [(1,1),(-1,1),(0,1)]:
-       c = QColor(self.canvasMap.contentImage().pixel(self.px-32 + dx,self.py-64 +dy)).getRgb()
-       if c[1] > 0:
-          new_px = self.px + dx
-          new_py = self.py + dy
-          break
-     self.px = new_px
-     self.py = new_py
-     #QgsMessageLog.logMessage(str(c))
-     #self.showBarMessage("Debug:", QgsMessageBar.INFO,1,str(self.px))
-
-     #self.posX = self.posX + 0.0001
-     #self.posY = self.posY + 0.0001
+     rnd1 = random.uniform(1, 10)/10000 - 0.0005
+     rnd2 = random.uniform(1, 10)/10000 - 0.0005
+     self.posX = self.posX + rnd1
+     self.posY = self.posY + rnd2
      self.triggerRepaint()
 
   @pyqtProperty(int)
@@ -133,7 +115,6 @@ class MPCredit(QgsPluginLayer):
       painter.fillRect(bgRect, QColor(240, 240, 240, 150))
       painter.drawText(rect, Qt.AlignBottom | Qt.AlignRight, self.credit)
       
-      """
       ### joke
       p = QgsPoint(self.posX, self.posY)
       extent = QgsGeometry.fromWkt(self.plugin.iface.mapCanvas().extent().asWktPolygon()) 
@@ -146,9 +127,6 @@ class MPCredit(QgsPluginLayer):
            #self.showBarMessage("Debug:", QgsMessageBar.INFO,1,str(self.posX))
       else:
            self.santa = False
-      """
-      self.santa = True
-      painter.drawImage(self.px-32, self.py-64, QImage(self.plugin.pathPlugin + os.sep + "santa.png"))
       painter.restore()
 
       #if self.plugin.iface.mapCanvas().scale() > 10000000:

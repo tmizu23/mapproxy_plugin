@@ -5,7 +5,7 @@
 
 <Style name="mapproxy" filter-mode="first" >
   <Rule>
-    <LineSymbolizer stroke-width="10" stroke="#fff" />
+    <LineSymbolizer stroke-width="2" stroke="#fff" />
   </Rule>
 </Style>
 

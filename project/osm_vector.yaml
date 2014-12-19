@@ -19,12 +19,12 @@ layers:
   - name: osm_buildings
     title: OSM_buildings(ベクトルタイル)
     sources: [buildings]
-  - name: osm_earth
-    title: OSM_earth(ベクトルタイル)
-    sources: [earth]
-  - name: osm_pois
-    title: OSM_Points_of_Interest(ベクトルタイル)
-    sources: [pois]
+#  - name: osm_earth
+#    title: OSM_earth(ベクトルタイル)
+#    sources: [earth]
+#  - name: osm_pois
+#    title: OSM_Points_of_Interest(ベクトルタイル)
+#    sources: [pois]
   - name: osm_places
     title: OSM_places(ベクトルタイル)
     sources: [places]
