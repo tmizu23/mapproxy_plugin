@@ -12,8 +12,7 @@
         <location filename="mapproxy_plugin.py" line="286"/>
         <source>Will you set autostart option? Mapproxy will run when you open the qgis. You can confirm the state on http://localhost:8080</source>
         <translation>自動オプションを設定しますか？QGISと同時にMapproxyが起動します。
-自動オプションを設定しておくと、プロジェクトファイルにMapproxyレイヤを保存でき、同じ状態で開けるようになります。
-自動オプションを中止するには、メニューの「Run Mapproxy」 で「いいえ」を選択してください。</translation>
+自動オプションを設定しておくと、プロジェクトファイルにMapproxyレイヤを保存でき、同じ状態で開けるようになります。</translation>
     </message>
     <message>
         <location filename="mapproxy_plugin.py" line="329"/>

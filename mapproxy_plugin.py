@@ -270,8 +270,8 @@ class MapProxyPlugin:
 
         self.iface.addRasterLayer(
             "crs=" + epsg + "&layers=" + layerType.name + "&styles=&format=image/png&oppai=true&url=http://localhost:8080/" + layerType.base + "/service?",
-            layerType.name, "wms")
-        credit = MPCredit(self,qgisepsg,layerType.name,layerType.credit)
+            layerType.title, "wms")
+        credit = MPCredit(self,qgisepsg,layerType.title,layerType.credit)
         QgsMapLayerRegistry.instance().addMapLayer(credit)
         self.layers[credit.id()]=credit
 

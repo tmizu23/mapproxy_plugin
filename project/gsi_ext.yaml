@@ -15,7 +15,7 @@ services:
             ・著作権法第30条における私的使用に相当する範囲を越える利用に際しては出所の明示を行ってください。<br />
             ・その他、以下サイトの利用規約に従う必要があります。<br />
            <a href="http://portal.cyberjapan.jp/help/termsofuse.html">http://portal.cyberjapan.jp/help/termsofuse.html</a>
-
+            ・Macの場合は<a href="https://github.com/tmizu23/mapproxy_plugin/wiki/">こちらの設定</a>が必要です。
 layers:
   - name: gsi_std
     title: 地理院標準地図(ズームレベル拡張)

@@ -11,6 +11,7 @@ services:
       access_constraints:
             ・地理院タイル（標高）を使用しています。<br />
             ・地理院タイル<a href="http://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html">利用規約</a>をお読みください。<br />
+            ・Macの場合は<a href="https://github.com/tmizu23/mapproxy_plugin/wiki/">こちらの設定</a>が必要です。<br />
 layers:
   - name: gsi_dem_oppai
     title: おっぱい山 検出(標高タイル）
@@ -18,17 +19,43 @@ layers:
   - name: gsi_dem
     title: 陰影起伏(標高タイル)
     sources: [gsi_dem]
+  - name: gsi_dem_nishi
+    title: 西之島付近噴火活動 標高タイル（2014年7月4日）
+    sources: [gsi_dem_nishi]
 caches:
   gsi_dem:
     grids: [web]
     sources: [gsi_dem]
+  gsi_dem_nishi:
+    grids: [web]
+    sources: [gsi_dem_nishi]
 sources:
   gsi_dem:
     type: geojson
     grid: web
     url: http://cyberjapandata.gsi.go.jp/xyz/dem/%(tms_path)s.txt
+    extzoom: [0,14,0,20]
     coverage:
       bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  gsi_dem_nishi:
+    type: geojson
+    grid: web
+    url: http://cyberjapandata.gsi.go.jp/xyz/20141204dd5/%(tms_path)s.txt
+    extzoom: [15,15,13,20]
+    coverage:
+      bbox: [140.8671, 27.2343, 140.8917, 27.2588]
       srs: 'EPSG:4326'
     transparent: true
     on_error:
