@@ -1,7 +1,8 @@
-﻿import os, sys, httplib,math
+﻿# -*- coding: utf-8 -*-
+import os, sys, httplib,math
 from xml.etree import ElementTree
 from datetime import date
-
+import urllib2
 
 def generate_search_xml(date_start,date_end,cloud_start,cloud_end,path_start,path_end,row_start,row_end):
    f = open(os.path.dirname(__file__) + os.sep + 'search_template.xml', 'r')
@@ -26,6 +27,15 @@ def do_request(request):
    result = webservice.getfile().read()
    print statuscode, statusmessage, header
    return result
+
+def check_getcapabilities(id):
+   url = "http://ows.geogrid.org/land8wms/" + id + "?request=getcapabilities&service=wms"
+   response = urllib2.urlopen(url)
+   data = response.read()
+   if "msLoadMap" in  data:
+      return False
+   else:
+      return True
 
 def parse_resultXML(result,type):
    root = ElementTree.fromstring(result)
@@ -60,7 +70,7 @@ def parse_resultXML(result,type):
       pr = path[i]+","+row[i]
       if pathrow.has_key(pr):
          use='no'
-         if (type=="fine" and pathrow[pr]['mincloud'] > float(cloud[i])) or ( type=="cloudy" and pathrow[pr]['mincloud'] < float(cloud[i]) ):
+         if (type=="fine" and pathrow[pr]['mincloud'] > float(cloud[i])) or ( type=="cloudy" and pathrow[pr]['mincloud'] < float(cloud[i]) ) and check_getcapabilities(id[i]):
               data[pathrow[pr]['num']]['use']='no'
               pathrow[pr]={'num':len(data),'mincloud':float(cloud[i])}
               use='yes'
@@ -163,8 +173,8 @@ def search(type,date_start,date_end,cloud_start,cloud_end,path_start,path_end,ro
 
 if __name__ == "__main__":
    #search_and_generate("fine","2014-01-01","2014-12-31","0","100","landsat8.yaml")
-   xmltext = generate_search_xml("2013-01-01","2013-12-31","0","100","104","116","28","43")
+   xmltext = generate_search_xml("2014-01-01","2014-12-31","0","100","104","116","28","43")
    result = do_request(xmltext)
    #print result
-   data = parse_resultXML(result,"fine")
+   data = parse_resultXML(result,"cloud")
    print data

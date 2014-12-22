@@ -38,7 +38,7 @@ def layers(filename):
         cmd = "\"" + mydir + os.sep + "layers.bat\" " + filename
     else:
         cmd = "source " + mydir + os.sep + "layers.sh " + filename
-    print cmd
+    #print cmd
     out, err = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                 shell=True).communicate()
     return ast.literal_eval(out) #string to dict
