@@ -11,7 +11,8 @@ services:
       access_constraints:
             ・国土地理院のベクトルタイル提供実験データを使用しています。<br />
             ・詳細は以下サイトのREADMEを参考ください。<br />
-           <a href="https://github.com/gsi-cyberjapan">https://github.com/gsi-cyberjapan</a>
+           <a href="https://github.com/gsi-cyberjapan">https://github.com/gsi-cyberjapan</a><br />
+            ・ベクトルタイルを表示するためには<a href="https://github.com/tmizu23/mapproxy_plugin/wiki/">こちらの設定</a>が必要です。<br />
 layers:
   - name: experimental_rdcl
     title: 道路中心線(ベクトルタイル)

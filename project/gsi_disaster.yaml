@@ -26,6 +26,9 @@ layers:
   - name: gsi_fukkokizu
     title: 災害復興計画基図
     sources: [gsi_fukkokizu]
+  - name: gsi_nishi20141210
+    title: 西之島付近噴火活動 正射画像（2014年12月10日撮影）
+    sources: [gsi_nishi]
 
 caches:
   gsi_toho1:
@@ -37,6 +40,9 @@ caches:
   gsi_fukkokizu:
     grids: [web]
     sources: [gsi_fukkokizu]
+  gsi_nishi:
+    grids: [web]
+    sources: [gsi_nishi]
 
 sources:
   gsi_fukkokizu:
@@ -66,6 +72,26 @@ sources:
     max_res: 0.5971642834779395
     coverage:
       bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  gsi_nishi:
+    type: tile
+    grid: web
+    url: http://cyberjapandata.gsi.go.jp/xyz/20141210doh/%(tms_path)s.png
+#    min_res: 4.777314267823516
+#    max_res: 0.5971642834779395
+    coverage:
+      bbox: [140.8671, 27.2343, 140.8917, 27.2588]
       srs: 'EPSG:4326'
     transparent: true
     on_error:

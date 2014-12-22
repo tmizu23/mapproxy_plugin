@@ -16,9 +16,9 @@ layers:
   - name: osm_roads
     title: OSM_roads(ベクトルタイル)
     sources: [roads]
-  - name: osm_buildings
-    title: OSM_buildings(ベクトルタイル)
-    sources: [buildings]
+#  - name: osm_buildings
+#    title: OSM_buildings(ベクトルタイル)
+#    sources: [buildings]
 #  - name: osm_earth
 #    title: OSM_earth(ベクトルタイル)
 #    sources: [earth]
