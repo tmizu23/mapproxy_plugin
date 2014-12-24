@@ -289,7 +289,7 @@ class MapProxyPlugin:
               f = open(self.pathPlugin + os.sep + "bin" + os.sep + "autorun.ini", "w")
               f.write("1")
               f.close()
-           else:
+           elif os.path.exists(self.pathPlugin + os.sep + "bin" + os.sep + "autorun.ini"):
               os.remove(self.pathPlugin + os.sep + "bin" + os.sep + "autorun.ini")
 
 
@@ -499,6 +499,14 @@ class MapProxyPlugin:
          for band in ["BANDQA","PANSHARPENED","BAND1","BAND2","BAND3","BAND4","BAND5","BAND6","BAND7","BAND8","BAND9","BAND10","BAND11"]:
               wcslayer = QgsRasterLayer("cache=PreferNetwork&crs=&format=GTiff&identifier="+ band + "&url=http://ows.geogrid.org/land8wcs/" + dd['id'],band, "wcs")
               if wcslayer.isValid():
+                 # writeout to geotiff, but large data and slow. so now comment out
+                 #file_name = "C://data/" + band + '.tif'
+                 #file_writer = QgsRasterFileWriter(file_name)               
+                 #pipe = QgsRasterPipe()
+                 #provider = wcslayer.dataProvider()
+                 #QgsMessageLog.logMessage(str(provider.xSize()) +" "+ str(provider.ySize()) + " " + str(provider.extent()))
+                 #pipe.set(provider.clone())
+                 #file_writer.writeRaster(pipe,provider.xSize(),provider.ySize(),provider.extent(),provider.crs())
                  QgsMapLayerRegistry.instance().addMapLayer(wcslayer)
                  self.iface.legendInterface().moveLayer(wcslayer, groupLayerID)
 

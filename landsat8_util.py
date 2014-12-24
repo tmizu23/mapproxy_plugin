@@ -61,24 +61,25 @@ def parse_resultXML(result,type):
    data=[]
    pathrow={}
    for i in range(len(id)):
-      w = str(math.floor(min(float(p1[i][0]),float(p4[i][0]))))
-      e = str(math.ceil(max(float(p2[i][0]),float(p3[i][0]))))
-      n = str(math.ceil(max(float(p1[i][1]),float(p2[i][1]))))
-      s = str(math.floor(min(float(p3[i][1]),float(p4[i][1]))))
-      bbox = ",".join([w,s,e,n])
+      if check_getcapabilities(id[i]):
+         w = str(math.floor(min(float(p1[i][0]),float(p4[i][0]))))
+         e = str(math.ceil(max(float(p2[i][0]),float(p3[i][0]))))
+         n = str(math.ceil(max(float(p1[i][1]),float(p2[i][1]))))
+         s = str(math.floor(min(float(p3[i][1]),float(p4[i][1]))))
+         bbox = ",".join([w,s,e,n])
 
-      pr = path[i]+","+row[i]
-      if pathrow.has_key(pr):
-         use='no'
-         if (type=="fine" and pathrow[pr]['mincloud'] > float(cloud[i])) or ( type=="cloudy" and pathrow[pr]['mincloud'] < float(cloud[i]) ) and check_getcapabilities(id[i]):
+         pr = path[i]+","+row[i]
+         if pathrow.has_key(pr):
+            use='no'
+            if (type=="fine" and pathrow[pr]['mincloud'] > float(cloud[i])) or ( type=="cloudy" and pathrow[pr]['mincloud'] < float(cloud[i]) ):
               data[pathrow[pr]['num']]['use']='no'
               pathrow[pr]={'num':len(data),'mincloud':float(cloud[i])}
               use='yes'
-      else:
-         use='yes'
-         pathrow[pr]={'num':len(data),'mincloud':float(cloud[i])}
+         else:
+            use='yes'
+            pathrow[pr]={'num':len(data),'mincloud':float(cloud[i])}
 
-      data.append({'id':id[i],'pr':pr,'date':date[i],'cloud':cloud[i],'use':use,'bbox':bbox})
+         data.append({'id':id[i],'pr':pr,'date':date[i],'cloud':cloud[i],'use':use,'bbox':bbox})
 
    return data
           
