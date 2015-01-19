@@ -10,7 +10,7 @@ def run(projectdir):
     if myos == "Windows":
         cmd = "\"" + mydir + os.sep + "run.bat\" " + projectdir
     else:
-        cmd = "source " + mydir + os.sep + "run.sh " + projectdir
+        cmd = "bash " + mydir + os.sep + "run.sh " + projectdir
     p = subprocess.Popen(cmd, shell=True)
     return
 
@@ -19,7 +19,7 @@ def install():
     if myos == "Windows":
         cmd = "\"" + mydir + os.sep + "install.bat\""
     else:
-        cmd = "source " + mydir + os.sep + "install.sh"
+        cmd = "bash " + mydir + os.sep + "install.sh"
     p = subprocess.call(cmd, shell=True)
     return p
 
@@ -37,7 +37,7 @@ def layers(filename):
     if myos == "Windows":
         cmd = "\"" + mydir + os.sep + "layers.bat\" " + filename
     else:
-        cmd = "source " + mydir + os.sep + "layers.sh " + filename
+        cmd = "bash " + mydir + os.sep + "layers.sh " + filename
     #print cmd
     out, err = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                 shell=True).communicate()

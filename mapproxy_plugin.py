@@ -232,8 +232,9 @@ class MapProxyPlugin:
         self.iface.removePluginMenu("MapProxy plugin", self.runAddAction)
         self.iface.removePluginMenu("MapProxy plugin", self.readmeAddAction)
         self.iface.removePluginMenu("MapProxy plugin", self.cacheAddAction)
-        self.iface.removePluginMenu("MapProxy plugin", self.landsat8MapGeneratorAction)
-        self.iface.removePluginMenu("MapProxy plugin", self.landsat8GetDataAction)
+        if hasattr(self, 'landsat8MapGeneratorAction'):
+           self.iface.removePluginMenu("MapProxy plugin", self.landsat8MapGeneratorAction)
+           self.iface.removePluginMenu("MapProxy plugin", self.landsat8GetDataAction)
         QgsPluginLayerRegistry.instance().removePluginLayerType(MPCredit.LAYER_TYPE)
         QObject.disconnect(QgsMapLayerRegistry.instance(), SIGNAL("layerRemoved(QString)"), self.layerRemoved)
 
@@ -358,7 +359,7 @@ class MapProxyPlugin:
         #                                                                              "</ol>"
         #                                                                              "<p>you can set layers by configuring yaml mapproxy file in this dirctory.<br>"
         #                                                                              "<a href='file:///" + projectdir + "'>" + projectdir + "</a></p>")
-        QMessageBox.information(None, "ReadMe", QCoreApplication.translate("message","dummy"))
+        QMessageBox.information(None, "ReadMe", QCoreApplication.translate("message","Install-->Run-->Select Map"))
 
     def landsat8getdata(self):
         self.arealayer = self.iface.addVectorLayer(self.pathPlugin + os.sep + 'shp' + os.sep + 'landsat8area.shp','LANDSAT8 AREA','ogr')

@@ -37,7 +37,7 @@
     </message>
     <message>
         <location filename="mapproxy_plugin.py" line="359"/>
-        <source>dummy</source>
+        <source>Install-->Run-->Select Map</source>
         <translation type="unfinished">&lt;h1&gt;使い方&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;最初に「Install mapproxy」を選択してmapproxy本体をインストールします。&lt;/li&gt;
