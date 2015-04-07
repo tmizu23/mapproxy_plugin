@@ -115,6 +115,7 @@ class MPCredit(QgsPluginLayer):
       painter.fillRect(bgRect, QColor(240, 240, 240, 150))
       painter.drawText(rect, Qt.AlignBottom | Qt.AlignRight, self.credit)
       
+      '''
       ### joke
       p = QgsPoint(self.posX, self.posY)
       extent = QgsGeometry.fromWkt(self.plugin.iface.mapCanvas().extent().asWktPolygon()) 
@@ -127,6 +128,7 @@ class MPCredit(QgsPluginLayer):
            #self.showBarMessage("Debug:", QgsMessageBar.INFO,1,str(self.posX))
       else:
            self.santa = False
+      '''
       painter.restore()
 
       #if self.plugin.iface.mapCanvas().scale() > 10000000:
@@ -468,7 +470,7 @@ class MapProxyPlugin:
          groupLayerID = self.iface.legendInterface().addGroup("landsat8wms[path:" + self.path + " row:" + self.row + "]")
          wmslayers=[]
          for d in sorted_data:
-            wmslayer = self.iface.addRasterLayer("crs=EPSG:4326&dpiMode=7&featureCount=10&format=image/png&layers=PANSHARPENED&styles=&url=http://ows.geogrid.org/land8wms/" + d[0] + "?",d[0] +"("+ d[1]+")", "wms")
+            wmslayer = self.iface.addRasterLayer("crs=EPSG:4326&dpiMode=7&featureCount=10&format=image/png&layers=PANSHARPENED&styles=&url=http://ows8.geogrid.org/land8wms/" + d[0] + "?",d[0] +"("+ d[1]+")", "wms")
             wmslayers.append(wmslayer)
             self.iface.legendInterface().moveLayer(wmslayer, groupLayerID)
          
@@ -498,7 +500,7 @@ class MapProxyPlugin:
          groupLayerID = self.iface.legendInterface().addGroup("landsat8wcs[path:" + self.path + " row:" + self.row + " date:"+ dd['date'] + " id:" + dd['id'] +"]")
          
          for band in ["BANDQA","PANSHARPENED","BAND1","BAND2","BAND3","BAND4","BAND5","BAND6","BAND7","BAND8","BAND9","BAND10","BAND11"]:
-              wcslayer = QgsRasterLayer("cache=PreferNetwork&crs=&format=GTiff&identifier="+ band + "&url=http://ows.geogrid.org/land8wcs/" + dd['id'],band, "wcs")
+              wcslayer = QgsRasterLayer("cache=PreferNetwork&crs=&format=GTiff&identifier="+ band + "&url=http://ows8.geogrid.org/land8wcs/" + dd['id'],band, "wcs")
               if wcslayer.isValid():
                  # writeout to geotiff, but large data and slow. so now comment out
                  #file_name = "C://data/" + band + '.tif'

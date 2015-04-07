@@ -2,34 +2,10 @@
 import os, sys, httplib,math
 from xml.etree import ElementTree
 from datetime import date
-import urllib2
-
-def generate_search_xml(date_start,date_end,cloud_start,cloud_end,path_start,path_end,row_start,row_end):
-   f = open(os.path.dirname(__file__) + os.sep + 'search_template.xml', 'r')
-   template = f.read()
-   xmltext = template.replace("date_start",date_start).replace("date_end",date_end).replace("cloud_start",cloud_start).replace("cloud_end",cloud_end).replace("path_start",path_start).replace("path_end",path_end).replace("row_start",row_start).replace("row_end",row_end)
-   f.close()
-   return xmltext
-
-def do_request(request):
-   """HTTP XML Post request, by www.forceflow.be"""
-   HOST = "csw2.geogrid.org"
-   API_URL = "/CSW/opensat"
-   webservice = httplib.HTTP(HOST)
-   webservice.putrequest("POST", API_URL)
-   webservice.putheader("Host", HOST)
-   webservice.putheader("User-Agent","Python post")
-   webservice.putheader("Content-type", "text/xml; charset=\"UTF-8\"")
-   webservice.putheader("Content-length", "%d" % len(request))
-   webservice.endheaders()
-   webservice.send(request)
-   statuscode, statusmessage, header = webservice.getreply()
-   result = webservice.getfile().read()
-   print statuscode, statusmessage, header
-   return result
+import urllib2,urllib
 
 def check_getcapabilities(id):
-   url = "http://ows.geogrid.org/land8wms/" + id + "?request=getcapabilities&service=wms"
+   url = "http://ows8.geogrid.org/land8wms/" + id + "?request=getcapabilities&service=wms"
    response = urllib2.urlopen(url)
    data = response.read()
    if "msLoadMap" in  data:
@@ -39,33 +15,30 @@ def check_getcapabilities(id):
 
 def parse_resultXML(result,type):
    root = ElementTree.fromstring(result)
-   namespace ={'rim':'urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0'}
-   namespace2 ={'gml':'http://www.opengis.net/gml'}
-
-   links = root.findall(".//*[@name='urn:ogc:def:slot:OGC-CSW-ebRIM-EO::acquisitionDate']",namespace)
-   date = [link[0][0].text for link in links]
-   links = root.findall(".//*[@objectType='urn:ogc:def:objectType:OGC-CSW-ebRIM-EO::EOBrowseInformation']/*[@name='urn:ogc:def:slot:OGC-CSW-ebRIM-EO::fileName']",namespace)
-   id = [link[0][0].text.split("/")[4].split("?")[0] for link in links]
-   links = root.findall(".//*[@name='urn:ogc:def:slot:OGC-CSW-ebRIM-EO::cloudCoverPercentage']",namespace)
-   cloud = [link[0][0].text for link in links]
-   links = root.findall(".//*[@name='urn:ogc:def:slot:OGC-CSW-ebRIM-EO::wrsLongitudeGrid']",namespace)
-   path = [link[0][0].text for link in links]
-   links = root.findall(".//*[@name='urn:ogc:def:slot:OGC-CSW-ebRIM-EO::wrsLatitudeGrid']",namespace)
-   row = [link[0][0].text for link in links]
-   links = root.findall(".//gml:LinearRing",namespace2)
-   p1 = [link[0].text.split(' ') for link in links]
-   p2 = [link[1].text.split(' ') for link in links]
-   p3 = [link[2].text.split(' ') for link in links]
-   p4 = [link[3].text.split(' ') for link in links]
-
+   namespace ={'ns':'http://www.w3.org/2005/Atom'}
+   links = root.findall("./ns:entry/ns:published",namespace)
+   date = [link.text for link in links]
+   links = root.findall("./ns:entry/ns:id",namespace)
+   id = [link.text for link in links]
+   links = root.findall(".//opt:cloudCoverPercentage",{'opt':'http://www.opengis.net/opt/2.0'})
+   cloud = [link.text for link in links]
+   path = [i[3:6] for i in id]
+   row = [i[6:9] for i in id]
+   links = root.findall(".//georss:polygon",{'georss':"http://www.georss.org/georss"})
+   pt_lon=[]
+   pt_lat=[]
+   for i in links:
+      pt = i.text.split(' ')
+      pt_lon.append([pt[0],pt[2],pt[4],pt[6]])
+      pt_lat.append([pt[1],pt[3],pt[5],pt[7]])
    data=[]
    pathrow={}
    for i in range(len(id)):
-      if check_getcapabilities(id[i]):
-         w = str(math.floor(min(float(p1[i][0]),float(p4[i][0]))))
-         e = str(math.ceil(max(float(p2[i][0]),float(p3[i][0]))))
-         n = str(math.ceil(max(float(p1[i][1]),float(p2[i][1]))))
-         s = str(math.floor(min(float(p3[i][1]),float(p4[i][1]))))
+      #if check_getcapabilities(id[i]):
+         w = str(math.floor(min(float(pt_lon[i][0]),float(pt_lon[i][3]))))
+         e = str(math.ceil(max(float(pt_lon[i][1]),float(pt_lon[i][2]))))
+         n = str(math.ceil(max(float(pt_lat[i][0]),float(pt_lat[i][1]))))
+         s = str(math.floor(min(float(pt_lat[i][2]),float(pt_lat[i][3]))))
          bbox = ",".join([w,s,e,n])
 
          pr = path[i]+","+row[i]
@@ -80,7 +53,6 @@ def parse_resultXML(result,type):
             pathrow[pr]={'num':len(data),'mincloud':float(cloud[i])}
 
          data.append({'id':id[i],'pr':pr,'date':date[i],'cloud':cloud[i],'use':use,'bbox':bbox})
-
    return data
           
 def makeyaml(data,output,type):
@@ -128,7 +100,7 @@ caches:
          f.write("  "+d['id']+":\n")
          f.write("    type: wms\n")
          f.write("    req:\n")
-         f.write("      url: http://ows.geogrid.org/land8wms/" + d['id'] +"?\n")
+         f.write("      url: http://ows8.geogrid.org/land8wms/" + d['id'] +"?\n")
          f.write("      layers: PANSHARPENED\n")
 #         f.write("      layers: default\n")
          f.write("      transparent: true\n")
@@ -148,15 +120,19 @@ caches:
    f.write(mystr.encode('utf_8'))
    f.close()
 
+
 def search_and_generate(type,date_start,date_end,cloud_start,cloud_end,output):
    path_start = "104"
    path_end ="116"
    row_start = "28"
    row_end = "43"
 
-   xmltext = generate_search_xml(date_start,date_end,cloud_start,cloud_end,path_start,path_end,row_start,row_end)
-   result = do_request(xmltext)
+   searchURL = "http://opencsw.geogrid.org/opencsw/LANDSAT8?"
+   params = "path=[" + path_start + " TO " + path_end + "]&row=[" + row_start + " TO " + row_end + "]&start=" + date_start + "T00:00:00Z&end=" + date_end + "T23:00:00Z&cloudCoverPercentage=[ " + cloud_start + " TO " + cloud_end + " ]&sort=acquisitionDate+desc&startIndex=1&count=10000&page=1"
+   response = urllib2.urlopen(searchURL + urllib.quote(params,'=:+&[]'))
+   result = response.read()
    data = parse_resultXML(result,type)
+   #print data
    if len(data)>0:
       makeyaml(data,output,type)
    return data
@@ -166,16 +142,12 @@ def search(type,date_start,date_end,cloud_start,cloud_end,path_start,path_end,ro
    #path_end ="110"
    #row_start = "35"
    #row_end = "35"
-
-   xmltext = generate_search_xml(date_start,date_end,cloud_start,cloud_end,path_start,path_end,row_start,row_end)
-   result = do_request(xmltext)
+   searchURL = "http://opencsw.geogrid.org/opencsw/LANDSAT8?"
+   params = "path=[" + path_start + " TO " + path_end + "]&row=[" + row_start + " TO " + row_end + "]&start=" + date_start + "T00:00:00Z&end=" + date_end + "T23:00:00Z&cloudCoverPercentage=[ " + cloud_start + " TO " + cloud_end + " ]&sort=acquisitionDate+desc&startIndex=1&count=10000&page=1"
+   response = urllib2.urlopen(searchURL + urllib.quote(params,'=:+&[]'))
+   result = response.read()
    data = parse_resultXML(result,type)
    return data
 
 if __name__ == "__main__":
-   #search_and_generate("fine","2014-01-01","2014-12-31","0","100","landsat8.yaml")
-   xmltext = generate_search_xml("2014-01-01","2014-12-31","0","100","104","116","28","43")
-   result = do_request(xmltext)
-   #print result
-   data = parse_resultXML(result,"cloud")
-   print data
+   search_and_generate("fine","2014-01-01","2014-12-31","0","100","landsat8.yaml")

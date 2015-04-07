@@ -44,6 +44,12 @@ layers:
   - name: gsi_gazo4
     title: 国土画像情報(第四期:1988-1990年撮影)
     sources: [gsi_gazo4]
+  - name: gsi_ort_old10
+    title: 空中写真（1961～1964年）
+    sources: [gsi_ort_old10]
+  - name: gsi_ort_USA10
+    title: 空中写真（1945～1950年）
+    sources: [gsi_ort_USA10]
   - name: airphoto
     title: 簡易空中写真(2004年～)
     sources: [gsi_airphoto]
@@ -76,6 +82,12 @@ caches:
   gsi_gazo4:
     grids: [web]
     sources: [gsi_gazo4area,gsi_gazo4]
+  gsi_ort_old10:
+    grids: [web]
+    sources: [gsi_ort_old10]
+  gsi_ort_USA10:
+    grids: [web]
+    sources: [gsi_ort_USA10]
   gsi_airphoto:
     grids: [web]
     sources: [gsi_std-6,gsi_airphoto]
@@ -324,6 +336,46 @@ sources:
     url: http://cyberjapandata.gsi.go.jp/xyz/gazo4area/%(tms_path)s.png
     min_res: 4891.96981025128
     max_res: 4.777314267823516
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  gsi_ort_old10:
+    type: tile
+    grid: web
+    url: http://cyberjapandata.gsi.go.jp/xyz/ort_old10/%(tms_path)s.png
+    #min_res: 4891.96981025128
+    #max_res: 0.29858214173896974
+    coverage:
+      bbox: [122.9, 20.4, 154.0, 45.6]
+      srs: 'EPSG:4326'
+    transparent: true
+    on_error:
+     204:
+       response: '#000000'
+       cache: True
+     502:
+       response: '#ede9e3'
+       cache: False
+     other:
+       response: '#000000'
+       cache: False
+  gsi_ort_USA10:
+    type: tile
+    grid: web
+    url: http://cyberjapandata.gsi.go.jp/xyz/ort_USA10/%(tms_path)s.png
+    #min_res: 4891.96981025128
+    #max_res: 0.29858214173896974
     coverage:
       bbox: [122.9, 20.4, 154.0, 45.6]
       srs: 'EPSG:4326'

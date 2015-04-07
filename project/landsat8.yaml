@@ -13,1242 +13,207 @@ services:
             
 layers:
   - name: landsat8
-    title: ランドサット8
-    sources: [landsat8_2014-01-01_2014-12-31_0_100_fine]
+    title: landsat8
+    sources: [landsat8]
 caches:
-  landsat8_2014-01-01_2014-12-31_0_100_fine:
+  landsat8:
     grids: [web]
     format: image/png
-    sources: [LO81060352014208KUJ00,LO81120282014138KUJ00,LC81100312014252KUJ00,LC81110432014179KUJ00,LC81060362014336KUJ00,LC81060322014304KUJ00,LO81130432014257KUJ00,LC81110422014291KUJ00,LO81080332014270KUJ00,LC81060292014288KUJ00,LO81090282014229KUJ00,LC81050412014137KUJ00,LC81150432014095KUJ00,LC81150422014239KUJ00,LC81140432014232KUJ00,LC81120402014122KUJ00,LO81150342014031KUJ00,LO81040292014274KUJ00,LC81050302014265LGN00,LC81130392014209KUJ00,LC81130402014001KUJ00,LO81070292014119KUJ00,LO81160422014246KUJ00,LC81120412014122KUJ00,LC81040412014226KUJ00,LO81070302014119KUJ00,LO81040312014274KUJ00,LO81060402014208KUJ00,LC81160402014278KUJ00,LO81100332014220KUJ00,LC81100352014092KUJ00,LO81070322014103KUJ00,LO81080282014286KUJ00,LO81070342014103KUJ00,LO81120292014106KUJ00,LO81080362014206KUJ00,LO81120422014234KUJ00,LO81070332014151KUJ00,LC81100362014076KUJ00,LC81060372014144KUJ00,LC81090352014325KUJ00,LO81040282014274KUJ00,LO81090302014101KUJ00,LO81160412014326KUJ00,LO81080312014206KUJ00,LC81040302014098KUJ00,LC81160392014278KUJ00,LO81080302014126KUJ00,LO81080342014270KUJ00,LC81040422014002KUJ00,LO81080292014078KUJ00,LC81060302014288KUJ00,LC81120392014122KUJ00,LO81160432014246KUJ00,LC81090332014149KUJ00,LC81120382014074KUJ00,LC81120352014122KUJ00,LO81150352014031KUJ00,LC81060342014128KUJ00,LO81130292014177KUJ00,LO81080322014270KUJ00,LC81140422014024KUJ00,LC81140412014024KUJ00,LO81100282014060KUJ00,LO81130302014097KUJ00,LC81100342014284KUJ00,LO81080352014302KUJ00,LC81090362014325KUJ00,LC81040432014050KUJ00,LC81130422014001KUJ00,LC81090312014309KUJ00,LC81120362014122KUJ00,LC81050422014297KUJ00,LO81070352014087KUJ00,LC81090372014149KUJ00,LC81120372014122KUJ00,LO81120302014090KUJ00,LO81070312014119KUJ00,LC81060312014240KUJ00,LC81050292014105KUJ00,LO81070282014119KUJ00,LO81150322014287KUJ00,LC81130342014129KUJ00,LO81090322014101KUJ00,LC81130412014001KUJ00,LO81140282014152KUJ00,LC81090342014309KUJ00,LO81090292014229KUJ00,LC81110352014115KUJ00,LO81110282014243KUJ00,LO81070372014087KUJ00,LO81150282014271KUJ00,LO81160312014150KUJ00,LO81160342014150KUJ00,LO81160332014150KUJ00,LO81150292014271KUJ00,LO81130282014113KUJ00,LO81160362014278KUJ00,LC81110362014115KUJ00,LO81070392014327KUJ00,LO81150332014319KUJ00,LO81160352014278KUJ00,LO81140292014104KUJ00,LC81130372014113KUJ00,LC81060332014128KUJ00,LO81070362014087KUJ00,LC81110372014083KUJ00,LO81150362014127KUJ00,LC81140352014104KUJ00,LO81150372014127KUJ00,LC81140362014104KUJ00,LO81070382014327KUJ00,LO81160292014118KUJ00,LC81100372014124KUJ00,LO81150302014287KUJ00,LO81150382014271KUJ00,LC81130382014113KUJ00,LC81140342014248KUJ00,LC81130362014113KUJ00,LO81140302014152KUJ00,LO81110292014291KUJ00,LO81160322014150KUJ00,LO81150312014287KUJ00,LO81160382014070KUJ00,LC81060382014032KUJ00,LO81100292014204KUJ00,LO81080372014206KUJ00,LO81160282014118KUJ00,LO81160372014070KUJ00,LO81110312014115KUJ00,LO81120312014090KUJ00,LC81140372014136KUJ00,LC81060392014032KUJ00,LO81130312014209KUJ00,LO81140312014152KUJ00,LC81130352014113KUJ00,LO81110302014291KUJ00,LO81160302014118KUJ00,LO81140322014152KUJ00]
+    sources: [LC81120362014250KUJ00,LO81070322014327KUJ00,LC81130352014321KUJ00,LO81160402014358KUJ00,LO81160322014262KUJ00,LO81120412014234KUJ00,LO81150342014287KUJ00,LO81120292014314KUJ00,LC81100312014252KUJ00,LC81110432014275KUJ00,LC81090322014245KUJ00,LC81040412014306KUJ00,LC81150432014239KUJ00,LC81060362014336KUJ00,LC81060322014304KUJ00,LO81130432014257KUJ00,LC81110372014323KUJ00,LC81050412014233KUJ00,LC81110422014291KUJ00,LC81140412014328KUJ00,LO81080332014270KUJ00,LC81060342014336KUJ00,LO81070352014343KUJ00,LO81160312014262KUJ00,LC81060292014288KUJ00,LC81100352014332KUJ00,LO81080372014318KUJ00,LO81130292014257KUJ00,LO81070362014231KUJ00,LO81070312014263KUJ00,LC81100362014252KUJ00,LC81050292014329KUJ00,LO81070342014359KUJ00,LO81040302014274KUJ00,LO81130302014273KUJ00,LC81130412014273KUJ00,LO81150352014287KUJ00,LO81080362014318KUJ00,LC81150422014239KUJ00,LC81130422014273KUJ00,LC81140432014232KUJ00,LO81040292014274KUJ00,LO81080292014286KUJ00,LC81130382014289KUJ00,LO81080312014254KUJ00,LC81050302014265LGN00,LO81160422014246KUJ00,LO81140282014360KUJ00,LO81160372014326KUJ00,LO81100292014332KUJ00,LC81140422014248KUJ00,LO81070292014295KUJ00,LO81040312014274KUJ00,LC81040432014322KUJ00,LO81070302014295KUJ00,LC81060372014304KUJ00,LC81070282014263LGN00,LC81130392014337KUJ00,LO81080302014238KUJ00,LC81140372014360KUJ00,LC81120392014298KUJ00,LC81130342014257LGN00,LO81160302014262KUJ00,LC81140362014360KUJ00,LO81080282014286KUJ00,LO81120422014234KUJ00,LC81110352014291KUJ00,LO81070372014327KUJ00,LC81120382014298KUJ00,LC81090332014309KUJ00,LC81090352014325KUJ00,LO81120282014330KUJ00,LO81040282014274KUJ00,LC81060392014288KUJ00,LO81100282014284KUJ00,LO81120402014234KUJ00,LC81120372014298KUJ00,LO81070332014263KUJ00,LO81160412014326KUJ00,LC81130362014289KUJ00,LC81130372014353KUJ00,LO81090282014245KUJ00,LC81040422014306KUJ00,LC81060382014288KUJ00,LC81130402014337KUJ00,LO81080342014270KUJ00,LC81090372014325KUJ00,LC81060352014336KUJ00,LC81060302014288KUJ00,LC81120352014266KUJ00,LO81160432014246KUJ00,LC81110362014291KUJ00,LO81150362014271KUJ00,LO81080322014270KUJ00,LC81100342014284KUJ00,LO81080352014302KUJ00,LO81150372014271KUJ00,LC81090362014325KUJ00,LO81120302014314KUJ00,LC81060332014304KUJ00,LC81090312014309KUJ00,LC81050422014297KUJ00,LO81160392014358KUJ00,LO81140312014328KUJ00,LC81100372014252KUJ00,LO81090292014245KUJ00,LO81140302014312KUJ00,LO81160292014294KUJ00,LC81060312014240KUJ00,LO81150322014287KUJ00,LO81160382014358KUJ00,LO81140292014312KUJ00,LO81160332014262KUJ00,LC81090342014309KUJ00,LO81140322014328KUJ00,LO81160282014294KUJ00,LO81130282014273KUJ00,LO81110282014243KUJ00,LO81160342014262KUJ00,LO81150282014271KUJ00,LO81150292014271KUJ00,LO81160362014278KUJ00,LO81070392014327KUJ00,LO81150332014319KUJ00,LO81160352014278KUJ00,LC81140352014248KUJ00,LO81130312014273KUJ00,LO81070382014327KUJ00,LO81150302014287KUJ00,LO81150382014271KUJ00,LC81140342014248KUJ00,LO81110292014291KUJ00,LO81150312014287KUJ00,LO81110302014291KUJ00,LO81110312014291KUJ00,LO81120312014314KUJ00]
 sources:
-  LO81100292014204KUJ00:
+  LC81140372014360KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LO81100292014204KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [137.0,44.0,140.0,46.0]
-      srs: 'EPSG:4326'
-  LO81080372014206KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81080372014206KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [136.0,33.0,140.0,35.0]
-      srs: 'EPSG:4326'
-  LO81080312014206KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81080312014206KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [138.0,40.0,142.0,43.0]
-      srs: 'EPSG:4326'
-  LO81080362014206KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81080362014206KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [136.0,33.0,140.0,36.0]
-      srs: 'EPSG:4326'
-  LO81060402014208KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81060402014208KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [138.0,29.0,141.0,30.0]
-      srs: 'EPSG:4326'
-  LO81060352014208KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81060352014208KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [140.0,35.0,143.0,38.0]
-      srs: 'EPSG:4326'
-  LO81130312014209KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81130312014209KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [131.0,41.0,135.0,43.0]
-      srs: 'EPSG:4326'
-  LC81130392014209KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81130392014209KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [128.0,29.0,131.0,32.0]
-      srs: 'EPSG:4326'
-  LO81100332014220KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81100332014220KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [135.0,37.0,138.0,39.0]
-      srs: 'EPSG:4326'
-  LC81130402014001KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81130402014001KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [127.0,27.0,131.0,30.0]
-      srs: 'EPSG:4326'
-  LC81130412014001KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81130412014001KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [127.0,26.0,130.0,29.0]
-      srs: 'EPSG:4326'
-  LC81130422014001KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81130422014001KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [127.0,24.0,130.0,27.0]
-      srs: 'EPSG:4326'
-  LC81040422014002KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81040422014002KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [140.0,24.0,144.0,27.0]
-      srs: 'EPSG:4326'
-  LC81140412014024KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81140412014024KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [125.0,26.0,129.0,29.0]
-      srs: 'EPSG:4326'
-  LC81140422014024KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81140422014024KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [125.0,24.0,128.0,28.0]
-      srs: 'EPSG:4326'
-  LO81150342014031KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81150342014031KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [126.0,36.0,130.0,39.0]
-      srs: 'EPSG:4326'
-  LO81150352014031KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81150352014031KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [126.0,35.0,130.0,38.0]
-      srs: 'EPSG:4326'
-  LC81060382014032KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81060382014032KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [139.0,30.0,142.0,33.0]
-      srs: 'EPSG:4326'
-  LC81060392014032KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81060392014032KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [138.0,29.0,142.0,32.0]
-      srs: 'EPSG:4326'
-  LC81040432014050KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81040432014050KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [140.0,23.0,143.0,25.0]
-      srs: 'EPSG:4326'
-  LO81100282014060KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81100282014060KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [137.0,44.0,141.0,48.0]
-      srs: 'EPSG:4326'
-  LO81160382014070KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81160382014070KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [124.0,32.0,127.0,33.0]
-      srs: 'EPSG:4326'
-  LO81160372014070KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81160372014070KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [124.0,32.0,127.0,35.0]
-      srs: 'EPSG:4326'
-  LC81120382014074KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81120382014074KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [129.0,30.0,133.0,33.0]
-      srs: 'EPSG:4326'
-  LC81100362014076KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81100362014076KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [133.0,33.0,137.0,36.0]
-      srs: 'EPSG:4326'
-  LO81080292014078KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81080292014078KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [139.0,43.0,143.0,46.0]
-      srs: 'EPSG:4326'
-  LC81110372014083KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81110372014083KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [131.0,32.0,135.0,35.0]
-      srs: 'EPSG:4326'
-  LO81070352014087KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81070352014087KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [138.0,35.0,142.0,38.0]
-      srs: 'EPSG:4326'
-  LO81070372014087KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81070372014087KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [138.0,32.0,141.0,35.0]
-      srs: 'EPSG:4326'
-  LO81070362014087KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81070362014087KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [138.0,33.0,141.0,36.0]
-      srs: 'EPSG:4326'
-  LO81120312014090KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81120312014090KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [133.0,41.0,136.0,43.0]
-      srs: 'EPSG:4326'
-  LO81120302014090KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81120302014090KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [133.0,42.0,137.0,45.0]
-      srs: 'EPSG:4326'
-  LC81100352014092KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81100352014092KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [134.0,35.0,137.0,38.0]
-      srs: 'EPSG:4326'
-  LC81150432014095KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81150432014095KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [123.0,23.0,126.0,26.0]
-      srs: 'EPSG:4326'
-  LO81130302014097KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81130302014097KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [131.0,42.0,135.0,45.0]
-      srs: 'EPSG:4326'
-  LC81040302014098KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81040302014098KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [145.0,42.0,149.0,45.0]
-      srs: 'EPSG:4326'
-  LO81090302014101KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81090302014101KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [137.0,42.0,141.0,43.0]
-      srs: 'EPSG:4326'
-  LO81090322014101KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81090322014101KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [136.0,39.0,140.0,42.0]
-      srs: 'EPSG:4326'
-  LO81070342014103KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81070342014103KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [139.0,36.0,142.0,39.0]
-      srs: 'EPSG:4326'
-  LO81070322014103KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81070322014103KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [140.0,39.0,143.0,42.0]
-      srs: 'EPSG:4326'
-  LC81140352014104KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81140352014104KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [128.0,35.0,131.0,38.0]
-      srs: 'EPSG:4326'
-  LC81140362014104KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81140362014104KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [127.0,33.0,131.0,36.0]
-      srs: 'EPSG:4326'
-  LO81140292014104KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81140292014104KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [130.0,43.0,134.0,46.0]
-      srs: 'EPSG:4326'
-  LC81050292014105KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81050292014105KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [144.0,43.0,148.0,46.0]
-      srs: 'EPSG:4326'
-  LO81120292014106KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81120292014106KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [133.0,43.0,137.0,46.0]
-      srs: 'EPSG:4326'
-  LO81130282014113KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81130282014113KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [132.0,44.0,136.0,48.0]
-      srs: 'EPSG:4326'
-  LC81130362014113KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81130362014113KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [129.0,33.0,132.0,36.0]
-      srs: 'EPSG:4326'
-  LC81130382014113KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81130382014113KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [128.0,30.0,131.0,33.0]
-      srs: 'EPSG:4326'
-  LC81130352014113KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81130352014113KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [129.0,35.0,133.0,38.0]
-      srs: 'EPSG:4326'
-  LC81130372014113KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81130372014113KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [128.0,32.0,132.0,35.0]
-      srs: 'EPSG:4326'
-  LO81110312014115KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81110312014115KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [134.0,42.0,138.0,43.0]
-      srs: 'EPSG:4326'
-  LC81110352014115KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81110352014115KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [132.0,35.0,136.0,38.0]
-      srs: 'EPSG:4326'
-  LC81110362014115KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81110362014115KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [132.0,33.0,135.0,36.0]
-      srs: 'EPSG:4326'
-  LO81160282014118KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81160282014118KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [127.0,45.0,131.0,48.0]
-      srs: 'EPSG:4326'
-  LO81160302014118KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81160302014118KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [126.0,42.0,130.0,45.0]
-      srs: 'EPSG:4326'
-  LO81160292014118KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81160292014118KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [127.0,43.0,131.0,46.0]
-      srs: 'EPSG:4326'
-  LO81070292014119KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81070292014119KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [141.0,43.0,145.0,46.0]
-      srs: 'EPSG:4326'
-  LO81070302014119KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81070302014119KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [140.0,42.0,144.0,45.0]
-      srs: 'EPSG:4326'
-  LO81070282014119KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81070282014119KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [141.0,44.0,145.0,48.0]
-      srs: 'EPSG:4326'
-  LO81070312014119KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81070312014119KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [140.0,40.0,144.0,43.0]
-      srs: 'EPSG:4326'
-  LC81120372014122KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81120372014122KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [130.0,32.0,133.0,35.0]
-      srs: 'EPSG:4326'
-  LC81120352014122KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81120352014122KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [131.0,34.0,134.0,38.0]
-      srs: 'EPSG:4326'
-  LC81120362014122KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81120362014122KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [130.0,33.0,134.0,36.0]
-      srs: 'EPSG:4326'
-  LC81120392014122KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81120392014122KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [129.0,29.0,132.0,32.0]
-      srs: 'EPSG:4326'
-  LC81120412014122KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81120412014122KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [128.0,26.0,132.0,29.0]
-      srs: 'EPSG:4326'
-  LC81120402014122KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81120402014122KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [129.0,27.0,132.0,30.0]
-      srs: 'EPSG:4326'
-  LC81100372014124KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81100372014124KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [133.0,32.0,136.0,35.0]
-      srs: 'EPSG:4326'
-  LO81080302014126KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81080302014126KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [139.0,42.0,143.0,45.0]
-      srs: 'EPSG:4326'
-  LO81150372014127KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81150372014127KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [125.0,32.0,129.0,35.0]
-      srs: 'EPSG:4326'
-  LC81060332014128KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81060332014128KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [141.0,37.0,144.0,40.0]
-      srs: 'EPSG:4326'
-  LC81060342014128KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81060342014128KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [140.0,36.0,144.0,39.0]
-      srs: 'EPSG:4326'
-  LO81150362014127KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81150362014127KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [126.0,33.0,129.0,36.0]
-      srs: 'EPSG:4326'
-  LC81130342014129KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81130342014129KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [129.0,36.0,133.0,39.0]
-      srs: 'EPSG:4326'
-  LC81140372014136KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81140372014136KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LC81140372014360KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
       bbox: [127.0,32.0,130.0,35.0]
       srs: 'EPSG:4326'
-  LC81050412014137KUJ00:
+  LC81140362014360KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LC81050412014137KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LC81140362014360KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
-      bbox: [139.0,26.0,143.0,29.0]
+      bbox: [127.0,33.0,131.0,36.0]
       srs: 'EPSG:4326'
-  LO81120282014138KUJ00:
+  LO81140282014360KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LO81120282014138KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LO81140282014360KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
-      bbox: [134.0,45.0,138.0,48.0]
+      bbox: [131.0,44.0,135.0,48.0]
       srs: 'EPSG:4326'
-  LC81060372014144KUJ00:
+  LO81070342014359KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LC81060372014144KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LO81070342014359KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
-      bbox: [139.0,32.0,143.0,35.0]
+      bbox: [139.0,36.0,142.0,39.0]
       srs: 'EPSG:4326'
-  LC81090332014149KUJ00:
+  LO81160402014358KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LC81090332014149KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [136.0,37.0,140.0,40.0]
-      srs: 'EPSG:4326'
-  LC81090372014149KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81090372014149KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [135.0,32.0,138.0,35.0]
-      srs: 'EPSG:4326'
-  LO81160342014150KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81160342014150KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [125.0,36.0,128.0,39.0]
-      srs: 'EPSG:4326'
-  LO81160322014150KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81160322014150KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [126.0,39.0,129.0,42.0]
-      srs: 'EPSG:4326'
-  LO81160332014150KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81160332014150KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [125.0,37.0,129.0,40.0]
-      srs: 'EPSG:4326'
-  LO81160312014150KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81160312014150KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [126.0,40.0,130.0,43.0]
-      srs: 'EPSG:4326'
-  LO81070332014151KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81070332014151KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [139.0,37.0,143.0,40.0]
-      srs: 'EPSG:4326'
-  LO81140322014152KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81140322014152KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [129.0,40.0,132.0,42.0]
-      srs: 'EPSG:4326'
-  LO81140312014152KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81140312014152KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [129.0,40.0,133.0,43.0]
-      srs: 'EPSG:4326'
-  LO81140302014152KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81140302014152KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [130.0,42.0,134.0,45.0]
-      srs: 'EPSG:4326'
-  LO81140282014152KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81140282014152KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [130.0,44.0,135.0,48.0]
-      srs: 'EPSG:4326'
-  LO81130292014177KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81130292014177KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [132.0,43.0,136.0,46.0]
-      srs: 'EPSG:4326'
-  LC81110432014179KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81110432014179KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [129.0,23.0,133.0,26.0]
-      srs: 'EPSG:4326'
-  LC81040412014226KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81040412014226KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [141.0,26.0,144.0,29.0]
-      srs: 'EPSG:4326'
-  LO81090292014229KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81090292014229KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [138.0,44.0,142.0,46.0]
-      srs: 'EPSG:4326'
-  LO81090282014229KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81090282014229KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [138.0,44.0,142.0,48.0]
-      srs: 'EPSG:4326'
-  LC81140432014232KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81140432014232KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [125.0,23.0,128.0,26.0]
-      srs: 'EPSG:4326'
-  LO81120422014234KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81120422014234KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [128.0,26.0,131.0,27.0]
-      srs: 'EPSG:4326'
-  LC81150422014239KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81150422014239KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [123.0,24.0,127.0,27.0]
-      srs: 'EPSG:4326'
-  LC81060312014240KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81060312014240KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [142.0,40.0,145.0,42.0]
-      srs: 'EPSG:4326'
-  LO81110282014243KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81110282014243KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [135.0,44.0,139.0,48.0]
-      srs: 'EPSG:4326'
-  LO81160422014246KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81160422014246KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [122.0,24.0,125.0,27.0]
-      srs: 'EPSG:4326'
-  LO81160432014246KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81160432014246KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [122.0,23.0,125.0,26.0]
-      srs: 'EPSG:4326'
-  LC81140342014248KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81140342014248KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [128.0,36.0,132.0,39.0]
-      srs: 'EPSG:4326'
-  LC81100312014252KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81100312014252KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [135.0,40.0,139.0,43.0]
-      srs: 'EPSG:4326'
-  LO81130432014257KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81130432014257KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [127.0,24.0,129.0,26.0]
-      srs: 'EPSG:4326'
-  LC81050302014265LGN00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81050302014265LGN00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [143.0,42.0,147.0,45.0]
-      srs: 'EPSG:4326'
-  LO81080322014270KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81080322014270KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [138.0,39.0,142.0,42.0]
-      srs: 'EPSG:4326'
-  LO81080332014270KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81080332014270KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [138.0,37.0,141.0,40.0]
-      srs: 'EPSG:4326'
-  LO81080342014270KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81080342014270KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [137.0,36.0,141.0,39.0]
-      srs: 'EPSG:4326'
-  LO81150382014271KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81150382014271KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [125.0,31.0,128.0,33.0]
-      srs: 'EPSG:4326'
-  LO81150282014271KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81150282014271KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [129.0,44.0,133.0,48.0]
-      srs: 'EPSG:4326'
-  LO81150292014271KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81150292014271KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [129.0,43.0,133.0,46.0]
-      srs: 'EPSG:4326'
-  LO81040312014274KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81040312014274KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [145.0,42.0,148.0,43.0]
-      srs: 'EPSG:4326'
-  LO81040282014274KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81040282014274KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [146.0,45.0,150.0,48.0]
-      srs: 'EPSG:4326'
-  LO81040292014274KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81040292014274KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [146.0,43.0,149.0,46.0]
-      srs: 'EPSG:4326'
-  LC81160402014278KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81160402014278KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LO81160402014358KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
       bbox: [123.0,27.0,126.0,30.0]
       srs: 'EPSG:4326'
-  LC81160392014278KUJ00:
+  LO81160392014358KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LC81160392014278KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LO81160392014358KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
       bbox: [123.0,29.0,126.0,32.0]
       srs: 'EPSG:4326'
-  LO81160362014278KUJ00:
+  LO81160382014358KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LO81160362014278KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LO81160382014358KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
-      bbox: [124.0,34.0,128.0,36.0]
+      bbox: [123.0,30.0,127.0,33.0]
       srs: 'EPSG:4326'
-  LO81160352014278KUJ00:
+  LC81130372014353KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LO81160352014278KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LC81130372014353KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
-      bbox: [124.0,34.0,128.0,38.0]
+      bbox: [128.0,32.0,132.0,35.0]
       srs: 'EPSG:4326'
-  LC81100342014284KUJ00:
+  LO81070352014343KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LC81100342014284KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LO81070352014343KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
-      bbox: [134.0,36.0,138.0,39.0]
+      bbox: [138.0,34.0,142.0,38.0]
       srs: 'EPSG:4326'
-  LO81080282014286KUJ00:
+  LC81130402014337KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LO81080282014286KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LC81130402014337KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
-      bbox: [140.0,45.0,144.0,47.0]
+      bbox: [127.0,27.0,131.0,30.0]
       srs: 'EPSG:4326'
-  LO81150312014287KUJ00:
+  LC81130392014337KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LO81150312014287KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LC81130392014337KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
-      bbox: [128.0,40.0,131.0,43.0]
+      bbox: [128.0,29.0,131.0,32.0]
       srs: 'EPSG:4326'
-  LO81150302014287KUJ00:
+  LC81060362014336KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LO81150302014287KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LC81060362014336KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
-      bbox: [128.0,42.0,132.0,45.0]
+      bbox: [140.0,33.0,143.0,36.0]
       srs: 'EPSG:4326'
-  LO81150322014287KUJ00:
+  LC81060352014336KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LO81150322014287KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LC81060352014336KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
-      bbox: [127.0,39.0,131.0,42.0]
+      bbox: [140.0,35.0,143.0,38.0]
       srs: 'EPSG:4326'
-  LC81060292014288KUJ00:
+  LC81060342014336KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LC81060292014288KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LC81060342014336KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
-      bbox: [142.0,43.0,146.0,46.0]
+      bbox: [140.0,36.0,144.0,39.0]
       srs: 'EPSG:4326'
-  LC81060302014288KUJ00:
+  LC81100352014332KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LC81060302014288KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LC81100352014332KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
-      bbox: [142.0,42.0,146.0,45.0]
+      bbox: [134.0,35.0,137.0,38.0]
       srs: 'EPSG:4326'
-  LC81110422014291KUJ00:
+  LO81100292014332KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LC81110422014291KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LO81100292014332KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
-      bbox: [130.0,24.0,133.0,27.0]
+      bbox: [137.0,44.0,140.0,46.0]
       srs: 'EPSG:4326'
-  LO81110292014291KUJ00:
+  LO81120282014330KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LO81110292014291KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LO81120282014330KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
-      bbox: [135.0,43.0,139.0,46.0]
+      bbox: [134.0,45.0,138.0,48.0]
       srs: 'EPSG:4326'
-  LO81110302014291KUJ00:
+  LC81050292014329KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LO81110302014291KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LC81050292014329KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
-      bbox: [134.0,42.0,138.0,45.0]
+      bbox: [144.0,43.0,148.0,46.0]
       srs: 'EPSG:4326'
-  LC81050422014297KUJ00:
+  LC81140412014328KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LC81050422014297KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LC81140412014328KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
-      bbox: [139.0,24.0,142.0,27.0]
+      bbox: [125.0,26.0,129.0,29.0]
       srs: 'EPSG:4326'
-  LO81080352014302KUJ00:
+  LO81140322014328KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LO81080352014302KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LO81140322014328KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
-      bbox: [137.0,34.0,140.0,38.0]
+      bbox: [129.0,40.0,132.0,42.0]
       srs: 'EPSG:4326'
-  LC81060322014304KUJ00:
+  LO81140312014328KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LC81060322014304KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LO81140312014328KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
-      bbox: [141.0,39.0,145.0,42.0]
-      srs: 'EPSG:4326'
-  LC81090312014309KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81090312014309KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [137.0,40.0,141.0,43.0]
-      srs: 'EPSG:4326'
-  LC81090342014309KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81090342014309KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [136.0,36.0,139.0,39.0]
-      srs: 'EPSG:4326'
-  LO81150332014319KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81150332014319KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [127.0,37.0,130.0,40.0]
-      srs: 'EPSG:4326'
-  LC81090352014325KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81090352014325KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [135.0,35.0,139.0,38.0]
-      srs: 'EPSG:4326'
-  LC81090362014325KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LC81090362014325KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [135.0,33.0,138.0,36.0]
-      srs: 'EPSG:4326'
-  LO81160412014326KUJ00:
-    type: wms
-    req:
-      url: http://ows.geogrid.org/land8wms/LO81160412014326KUJ00?
-      layers: PANSHARPENED
-      transparent: true
-    coverage:
-      bbox: [122.0,26.0,126.0,29.0]
+      bbox: [129.0,40.0,133.0,43.0]
       srs: 'EPSG:4326'
   LO81070392014327KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LO81070392014327KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LO81070392014327KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
@@ -1257,20 +222,1028 @@ sources:
   LO81070382014327KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LO81070382014327KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LO81070382014327KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
       bbox: [137.0,30.0,141.0,33.0]
       srs: 'EPSG:4326'
-  LC81060362014336KUJ00:
+  LO81070372014327KUJ00:
     type: wms
     req:
-      url: http://ows.geogrid.org/land8wms/LC81060362014336KUJ00?
+      url: http://ows8.geogrid.org/land8wms/LO81070372014327KUJ00?
       layers: PANSHARPENED
       transparent: true
     coverage:
-      bbox: [140.0,33.0,143.0,36.0]
+      bbox: [138.0,32.0,141.0,35.0]
+      srs: 'EPSG:4326'
+  LO81070322014327KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81070322014327KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [140.0,39.0,143.0,42.0]
+      srs: 'EPSG:4326'
+  LO81160412014326KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81160412014326KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [122.0,26.0,126.0,29.0]
+      srs: 'EPSG:4326'
+  LO81160372014326KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81160372014326KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [124.0,32.0,127.0,35.0]
+      srs: 'EPSG:4326'
+  LC81090372014325KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81090372014325KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [135.0,32.0,138.0,35.0]
+      srs: 'EPSG:4326'
+  LC81090362014325KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81090362014325KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [135.0,33.0,138.0,36.0]
+      srs: 'EPSG:4326'
+  LC81090352014325KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81090352014325KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [135.0,35.0,139.0,38.0]
+      srs: 'EPSG:4326'
+  LC81110372014323KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81110372014323KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [131.0,32.0,135.0,35.0]
+      srs: 'EPSG:4326'
+  LC81040432014322KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81040432014322KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [140.0,23.0,143.0,26.0]
+      srs: 'EPSG:4326'
+  LC81130352014321KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81130352014321KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [129.0,35.0,133.0,38.0]
+      srs: 'EPSG:4326'
+  LO81150332014319KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81150332014319KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [127.0,37.0,130.0,40.0]
+      srs: 'EPSG:4326'
+  LO81080372014318KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81080372014318KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [136.0,33.0,139.0,35.0]
+      srs: 'EPSG:4326'
+  LO81080362014318KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81080362014318KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [136.0,33.0,140.0,36.0]
+      srs: 'EPSG:4326'
+  LO81120312014314KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81120312014314KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [133.0,42.0,136.0,43.0]
+      srs: 'EPSG:4326'
+  LO81120302014314KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81120302014314KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [133.0,42.0,137.0,45.0]
+      srs: 'EPSG:4326'
+  LO81120292014314KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81120292014314KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [133.0,43.0,137.0,46.0]
+      srs: 'EPSG:4326'
+  LO81140302014312KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81140302014312KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [130.0,42.0,133.0,45.0]
+      srs: 'EPSG:4326'
+  LO81140292014312KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81140292014312KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [130.0,43.0,134.0,46.0]
+      srs: 'EPSG:4326'
+  LC81090342014309KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81090342014309KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [136.0,36.0,139.0,39.0]
+      srs: 'EPSG:4326'
+  LC81090332014309KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81090332014309KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [136.0,37.0,140.0,40.0]
+      srs: 'EPSG:4326'
+  LC81090312014309KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81090312014309KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [137.0,40.0,141.0,43.0]
+      srs: 'EPSG:4326'
+  LC81040422014306KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81040422014306KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [140.0,24.0,144.0,27.0]
+      srs: 'EPSG:4326'
+  LC81040412014306KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81040412014306KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [141.0,26.0,144.0,29.0]
+      srs: 'EPSG:4326'
+  LC81060372014304KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81060372014304KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [139.0,32.0,143.0,35.0]
+      srs: 'EPSG:4326'
+  LC81060332014304KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81060332014304KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [141.0,37.0,144.0,40.0]
+      srs: 'EPSG:4326'
+  LC81060322014304KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81060322014304KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [141.0,39.0,145.0,42.0]
+      srs: 'EPSG:4326'
+  LO81080352014302KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81080352014302KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [137.0,35.0,140.0,38.0]
+      srs: 'EPSG:4326'
+  LC81120392014298KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81120392014298KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [129.0,29.0,133.0,32.0]
+      srs: 'EPSG:4326'
+  LC81120382014298KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81120382014298KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [130.0,30.0,133.0,33.0]
+      srs: 'EPSG:4326'
+  LC81120372014298KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81120372014298KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [130.0,32.0,133.0,35.0]
+      srs: 'EPSG:4326'
+  LC81050422014297KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81050422014297KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [139.0,24.0,142.0,27.0]
+      srs: 'EPSG:4326'
+  LO81070302014295KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81070302014295KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [140.0,42.0,144.0,45.0]
+      srs: 'EPSG:4326'
+  LO81070292014295KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81070292014295KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [141.0,43.0,145.0,46.0]
+      srs: 'EPSG:4326'
+  LO81160292014294KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81160292014294KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [127.0,43.0,131.0,46.0]
+      srs: 'EPSG:4326'
+  LO81160282014294KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81160282014294KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [128.0,45.0,131.0,48.0]
+      srs: 'EPSG:4326'
+  LC81110422014291KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81110422014291KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [130.0,24.0,133.0,27.0]
+      srs: 'EPSG:4326'
+  LC81110362014291KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81110362014291KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [132.0,33.0,135.0,36.0]
+      srs: 'EPSG:4326'
+  LC81110352014291KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81110352014291KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [132.0,35.0,136.0,38.0]
+      srs: 'EPSG:4326'
+  LO81110312014291KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81110312014291KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [134.0,42.0,138.0,43.0]
+      srs: 'EPSG:4326'
+  LO81110302014291KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81110302014291KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [134.0,42.0,138.0,45.0]
+      srs: 'EPSG:4326'
+  LO81110292014291KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81110292014291KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [135.0,43.0,139.0,46.0]
+      srs: 'EPSG:4326'
+  LC81130382014289KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81130382014289KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [128.0,30.0,131.0,33.0]
+      srs: 'EPSG:4326'
+  LC81130362014289KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81130362014289KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [129.0,33.0,132.0,36.0]
+      srs: 'EPSG:4326'
+  LC81060392014288KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81060392014288KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [138.0,29.0,142.0,32.0]
+      srs: 'EPSG:4326'
+  LC81060382014288KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81060382014288KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [139.0,30.0,142.0,33.0]
+      srs: 'EPSG:4326'
+  LC81060302014288KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81060302014288KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [142.0,42.0,146.0,45.0]
+      srs: 'EPSG:4326'
+  LC81060292014288KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81060292014288KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [142.0,43.0,146.0,46.0]
+      srs: 'EPSG:4326'
+  LO81150352014287KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81150352014287KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [126.0,35.0,130.0,38.0]
+      srs: 'EPSG:4326'
+  LO81150342014287KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81150342014287KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [126.0,36.0,130.0,39.0]
+      srs: 'EPSG:4326'
+  LO81150322014287KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81150322014287KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [127.0,39.0,131.0,42.0]
+      srs: 'EPSG:4326'
+  LO81150312014287KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81150312014287KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [128.0,40.0,131.0,43.0]
+      srs: 'EPSG:4326'
+  LO81150302014287KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81150302014287KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [128.0,42.0,132.0,45.0]
+      srs: 'EPSG:4326'
+  LO81080292014286KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81080292014286KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [139.0,43.0,143.0,46.0]
+      srs: 'EPSG:4326'
+  LO81080282014286KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81080282014286KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [140.0,45.0,144.0,47.0]
+      srs: 'EPSG:4326'
+  LC81100342014284KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81100342014284KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [134.0,36.0,138.0,39.0]
+      srs: 'EPSG:4326'
+  LO81100282014284KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81100282014284KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [137.0,45.0,141.0,48.0]
+      srs: 'EPSG:4326'
+  LO81160362014278KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81160362014278KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [124.0,34.0,128.0,36.0]
+      srs: 'EPSG:4326'
+  LO81160352014278KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81160352014278KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [124.0,35.0,128.0,38.0]
+      srs: 'EPSG:4326'
+  LC81110432014275KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81110432014275KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [129.0,23.0,133.0,26.0]
+      srs: 'EPSG:4326'
+  LO81040312014274KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81040312014274KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [145.0,42.0,148.0,43.0]
+      srs: 'EPSG:4326'
+  LO81040302014274KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81040302014274KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [145.0,42.0,149.0,45.0]
+      srs: 'EPSG:4326'
+  LO81040292014274KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81040292014274KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [146.0,43.0,149.0,46.0]
+      srs: 'EPSG:4326'
+  LO81040282014274KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81040282014274KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [146.0,45.0,150.0,48.0]
+      srs: 'EPSG:4326'
+  LC81130422014273KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81130422014273KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [127.0,24.0,130.0,27.0]
+      srs: 'EPSG:4326'
+  LC81130412014273KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81130412014273KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [127.0,26.0,130.0,29.0]
+      srs: 'EPSG:4326'
+  LO81130312014273KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81130312014273KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [131.0,42.0,135.0,43.0]
+      srs: 'EPSG:4326'
+  LO81130302014273KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81130302014273KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [131.0,42.0,135.0,45.0]
+      srs: 'EPSG:4326'
+  LO81130282014273KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81130282014273KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [132.0,45.0,136.0,48.0]
+      srs: 'EPSG:4326'
+  LO81150382014271KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81150382014271KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [125.0,32.0,128.0,33.0]
+      srs: 'EPSG:4326'
+  LO81150372014271KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81150372014271KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [125.0,32.0,129.0,35.0]
+      srs: 'EPSG:4326'
+  LO81150362014271KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81150362014271KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [126.0,33.0,129.0,36.0]
+      srs: 'EPSG:4326'
+  LO81150292014271KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81150292014271KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [129.0,43.0,132.0,46.0]
+      srs: 'EPSG:4326'
+  LO81150282014271KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81150282014271KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [129.0,45.0,133.0,48.0]
+      srs: 'EPSG:4326'
+  LO81080342014270KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81080342014270KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [137.0,36.0,141.0,39.0]
+      srs: 'EPSG:4326'
+  LO81080332014270KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81080332014270KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [138.0,37.0,141.0,40.0]
+      srs: 'EPSG:4326'
+  LO81080322014270KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81080322014270KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [138.0,39.0,142.0,42.0]
+      srs: 'EPSG:4326'
+  LC81120352014266KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81120352014266KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [131.0,35.0,134.0,38.0]
+      srs: 'EPSG:4326'
+  LC81050302014265LGN00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81050302014265LGN00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [144.0,42.0,147.0,45.0]
+      srs: 'EPSG:4326'
+  LO81070332014263KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81070332014263KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [139.0,37.0,143.0,40.0]
+      srs: 'EPSG:4326'
+  LO81070312014263KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81070312014263KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [140.0,40.0,144.0,43.0]
+      srs: 'EPSG:4326'
+  LC81070282014263LGN00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81070282014263LGN00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [141.0,44.0,145.0,48.0]
+      srs: 'EPSG:4326'
+  LO81160342014262KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81160342014262KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [125.0,36.0,128.0,39.0]
+      srs: 'EPSG:4326'
+  LO81160332014262KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81160332014262KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [125.0,37.0,129.0,40.0]
+      srs: 'EPSG:4326'
+  LO81160322014262KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81160322014262KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [126.0,39.0,129.0,42.0]
+      srs: 'EPSG:4326'
+  LO81160312014262KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81160312014262KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [126.0,40.0,130.0,43.0]
+      srs: 'EPSG:4326'
+  LO81160302014262KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81160302014262KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [127.0,42.0,130.0,45.0]
+      srs: 'EPSG:4326'
+  LO81130432014257KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81130432014257KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [127.0,24.0,129.0,26.0]
+      srs: 'EPSG:4326'
+  LC81130342014257LGN00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81130342014257LGN00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [129.0,36.0,133.0,39.0]
+      srs: 'EPSG:4326'
+  LO81130292014257KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81130292014257KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [132.0,43.0,136.0,46.0]
+      srs: 'EPSG:4326'
+  LO81080312014254KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81080312014254KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [138.0,40.0,142.0,43.0]
+      srs: 'EPSG:4326'
+  LC81100372014252KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81100372014252KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [133.0,32.0,136.0,35.0]
+      srs: 'EPSG:4326'
+  LC81100362014252KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81100362014252KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [133.0,33.0,137.0,36.0]
+      srs: 'EPSG:4326'
+  LC81100312014252KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81100312014252KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [135.0,40.0,139.0,43.0]
+      srs: 'EPSG:4326'
+  LC81120362014250KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81120362014250KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [130.0,33.0,134.0,36.0]
+      srs: 'EPSG:4326'
+  LC81140422014248KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81140422014248KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [125.0,24.0,128.0,27.0]
+      srs: 'EPSG:4326'
+  LC81140352014248KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81140352014248KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [128.0,35.0,131.0,38.0]
+      srs: 'EPSG:4326'
+  LC81140342014248KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81140342014248KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [128.0,36.0,132.0,39.0]
+      srs: 'EPSG:4326'
+  LO81160432014246KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81160432014246KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [122.0,23.0,125.0,26.0]
+      srs: 'EPSG:4326'
+  LO81160422014246KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81160422014246KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [122.0,24.0,125.0,27.0]
+      srs: 'EPSG:4326'
+  LC81090322014245KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81090322014245KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [137.0,39.0,140.0,42.0]
+      srs: 'EPSG:4326'
+  LO81090292014245KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81090292014245KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [138.0,44.0,142.0,46.0]
+      srs: 'EPSG:4326'
+  LO81090282014245KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81090282014245KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [138.0,45.0,142.0,48.0]
+      srs: 'EPSG:4326'
+  LO81110282014243KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81110282014243KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [135.0,45.0,139.0,48.0]
+      srs: 'EPSG:4326'
+  LC81060312014240KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81060312014240KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [142.0,40.0,145.0,42.0]
+      srs: 'EPSG:4326'
+  LC81150432014239KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81150432014239KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [123.0,23.0,126.0,26.0]
+      srs: 'EPSG:4326'
+  LC81150422014239KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81150422014239KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [123.0,24.0,127.0,27.0]
+      srs: 'EPSG:4326'
+  LO81080302014238KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81080302014238KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [139.0,42.0,143.0,45.0]
+      srs: 'EPSG:4326'
+  LO81120422014234KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81120422014234KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [128.0,26.0,131.0,27.0]
+      srs: 'EPSG:4326'
+  LO81120412014234KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81120412014234KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [128.0,26.0,132.0,29.0]
+      srs: 'EPSG:4326'
+  LO81120402014234KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81120402014234KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [129.0,27.0,132.0,30.0]
+      srs: 'EPSG:4326'
+  LC81050412014233KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81050412014233KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [139.0,26.0,143.0,29.0]
+      srs: 'EPSG:4326'
+  LC81140432014232KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LC81140432014232KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [125.0,23.0,128.0,26.0]
+      srs: 'EPSG:4326'
+  LO81070362014231KUJ00:
+    type: wms
+    req:
+      url: http://ows8.geogrid.org/land8wms/LO81070362014231KUJ00?
+      layers: PANSHARPENED
+      transparent: true
+    coverage:
+      bbox: [138.0,33.0,141.0,36.0]
       srs: 'EPSG:4326'
 grids:
   web:
